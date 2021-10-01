@@ -2,3 +2,10 @@
     margin-top: 100px;
     margin-left: 20px;
 }
+
+.carousel__view {
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+    width: 100%;
+}

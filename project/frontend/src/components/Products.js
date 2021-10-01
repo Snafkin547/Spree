@@ -7,11 +7,17 @@ import './Products.css';  // style sheet for this part of the UI
 class ProductInformation extends Component {    
     render() {
         return (
-            <div>
-                <h1>{ this.props.image }</h1>
-                <h2>{ this.props.name }</h2>
-                <h2>{ this.props.price }</h2>            
-            </div>
+            <li className='product_card'>
+                <div className= "item__image">
+                    <img src={ this.props.image }></img>
+                </div>
+                <div>
+                    <span className="item__name"> { this.props.name } </span>
+                </div>        
+                <div>
+                    <span className="item__price"> { this.props.price } </span>
+                </div> 
+            </li>
         )
     }
 
@@ -26,9 +32,14 @@ class Products extends Component {
         const products = {
             "productInformation": [
                 {
-                    "image": "Image",
+                    "image": "../../public/img/iphone13-blue.jpg",
                     "name": "iPhone 13",
                     "price": 1200,
+                },
+                {
+                    "image": "Image",
+                    "name": "Samsung",
+                    "price": 900,
                 }
             ]
 
@@ -43,12 +54,8 @@ class Products extends Component {
         })
     
       // how it will show in the DOM
-      return (
-        <div className='product_card'>
-            <div className="product_info">
-                <body> {productInformationComponent} </body>
-                </div> 
-        </div>          
+      return (  
+        <ul className="carousel__list">{productInformationComponent}</ul>
       ); 
   }
 }
