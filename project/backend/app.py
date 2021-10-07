@@ -4,9 +4,9 @@ from flask import Flask
 app = Flask(__name__)
 
 #app is the instance of Flask app 
-@app.route("/<string:name>")
-def home(name):
-    return f"<h1>Hello, {name}!</h1>"    
+@app.route("/")
+def home():
+    return "Hello!"    
 
 if __name__ == '__main__':
     app.run(debug=True)
