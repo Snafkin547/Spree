@@ -32,12 +32,12 @@ class Products extends Component {
         const products = {
             "productInformation": [
                 {
-                    "image": "../../public/img/iphone13-blue.jpg",
+                    "image": "img/iphone13-blue.jpg",
                     "name": "iPhone 13",
                     "price": 1200,
                 },
                 {
-                    "image": "Image",
+                    "image": "img/iphone13.png",
                     "name": "Samsung",
                     "price": 900,
                 }

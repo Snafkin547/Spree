@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Products.css';
+import SearchBar from './Search'
 
 class Header extends Component {
   render() {
@@ -10,9 +11,10 @@ class Header extends Component {
                   <tr>
                   <td>
                   <h1>
-                    <img src={"./img/iphone13-blue.jpg"}></img>
+                    <img src={"img/chip-spree-logo.JPG"}></img>
                   </h1>      
                   </td>
+                  <SearchBar/>
                    </tr>
                 </tbody>
             </table>
