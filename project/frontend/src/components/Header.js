@@ -11,11 +11,11 @@ class Header extends Component {
                   <tr>
                   <td>
                   <h1>
-                    <img src={"img/chip-spree-logo.JPG"}></img>
+                    <img class="logo__image" src={"img/chip-spree-logo.JPG"} alt="Image" />
                   </h1>      
                   </td>
-                  <SearchBar/>
-                   </tr>
+                  <td class="search__bar"><SearchBar/></td>
+                  </tr>
                 </tbody>
             </table>
           <div></div>                

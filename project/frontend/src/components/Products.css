@@ -9,3 +9,18 @@
     white-space: nowrap;
     width: 100%;
 }
+
+.item__image {
+    width: 200px;
+    height: auto;
+}
+
+.logo__image {
+    width: 100px;
+    height: auto;
+}
+
+.search__bar {
+    width: 93%;
+    margin: 0 auto;
+}

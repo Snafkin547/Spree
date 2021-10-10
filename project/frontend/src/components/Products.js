@@ -8,8 +8,8 @@ class ProductInformation extends Component {
     render() {
         return (
             <li className='product_card'>
-                <div className= "item__image">
-                    <img src={ this.props.image }></img>
+                <div>
+                <img class="item__image" src={ this.props.image } alt="Image" />
                 </div>
                 <div>
                     <span className="item__name"> { this.props.name } </span>
