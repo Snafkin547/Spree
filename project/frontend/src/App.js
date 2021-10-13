@@ -2,7 +2,7 @@ import React, { useState, useEffect, Component} from 'react';
 import './App.css';
 import Header from './components/Header';
 import ProductList from './components/ProductList';
-
+import TheAccount from './components/TheAccount.js'
 function App() {
     // const [initialData, setInitialData] = this.useState([{}]);
 
@@ -13,6 +13,7 @@ function App() {
       <div className="App"> 
         <Header/>
         <ProductList />
+        <TheAccount />
       </div>
     );
   

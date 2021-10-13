@@ -1,0 +1,48 @@
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: azure;
+    padding: 50px;
+    border-radius: 3%;
+}
+
+.container li {
+    margin-bottom: 10px;
+    text-align: right;
+    padding: 5px;
+}
+
+.the-account {
+    background-color: #7bed9f;
+    text-align: right;
+    padding: 10px 20px;
+}
+
+.the-account span {
+    cursor: pointer;
+    color: #70a1ff;
+}
+
+.login-sign {
+    position: absolute;
+    right: 20px;
+    top: 30px;
+    background-color: #dfe4ea;
+    text-align: center;
+    padding: unset;
+}
+
+.login-sign li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.login-sign li:nth-child(1) {
+    border-bottom: 1px solid #000;
+}
+
+button {
+    background-color: #7BED9F;
+}
