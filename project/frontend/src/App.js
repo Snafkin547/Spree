@@ -3,7 +3,16 @@ import './App.css';
 import Header from './components/Header';
 import ProductList from './components/ProductList';
 import TheAccount from './components/TheAccount.js'
+
 function App() {
+
+  // state = {
+  //   modal: true
+  // };
+
+  // selectModal = info => {
+  //   this.setState({ modal: !this.state.modal }); // true/false toggle
+  // };
     // const [initialData, setInitialData] = this.useState([{}]);
 
     // useEffect(()=> {

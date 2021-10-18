@@ -1,5 +1,6 @@
 import "./Login.css";
 import { useState, useRef } from "react";
+
 export default function TheAccount() {
   const [showLoginSign, setShowLoginSign] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
@@ -20,12 +21,12 @@ export default function TheAccount() {
         <div className="the-account">
           <span onClick={() => setShowLoginSign(!showLoginSign)}>
             My Account
-          </span>
+          </span>         
         </div>
         {showLoginSign && (
           <ul className="login-sign" onClick={() => setShowLoginSign(false)}>
             <li onClick={() => handleShowLogin()}>Login</li>
-            <li onClick={() => handleShowSign()}>Sign Up</li>
+            <li onClick={() => handleShowSign()}>Sign Up</li>            
           </ul>
         )}
       </header>
@@ -38,6 +39,18 @@ export default function TheAccount() {
 function Login() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+
+  const Modal = props => {
+    const divStyle = {
+      display: this.props.displayModal ? "block" : "none"
+    }
+  }
+  
+  function closeModal(e) {
+      e.stopPropagation();
+      this.props.closeModal();
+    }
+
   function handleLoginIn() {
     console.log("username, password", username, password)
     return;
@@ -50,9 +63,19 @@ function Login() {
   }
 
   return (
-    <ul className="container">
-      <h3 align="center"> Login </h3>
-      <li>
+    <ul className="container">      
+      <li onClick={closeModal}>
+      <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
+                onClick={() => closeModal()}
+              ><span aria-hidden="false">&times;</span>
+              </button>
+      </li>    
+      <h3 align="center"> Login </h3>        
+      <li>      
         <label htmlFor="username">Username: </label>
         <input
           type="text"
