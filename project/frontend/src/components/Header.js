@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Products.css';
-import SearchBar from './Search'
+import SearchBar from './Search';
+import TheAccount from './TheAccount.js';
 
 class Header extends Component {
   render() {
@@ -15,6 +16,7 @@ class Header extends Component {
                   </h1>      
                   </td>
                   <td class="search__bar"><SearchBar/></td>
+                  <td class="account"><TheAccount /></td>
                   </tr>
                 </tbody>
             </table>
