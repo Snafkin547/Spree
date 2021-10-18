@@ -19,9 +19,10 @@ export default function TheAccount() {
       <header style={{position: 'absolute', top: "0", width: "100%"}}>
         <div className="the-account">
           <span onClick={() => setShowLoginSign(!showLoginSign)}>
-            My Account
-          </span>
+            My Account 
+          </span> <a href="#/cart">My Cart</a> 
         </div>
+        
         {showLoginSign && (
           <ul className="login-sign" onClick={() => setShowLoginSign(false)}>
             <li onClick={() => handleShowLogin()}>Login</li>
