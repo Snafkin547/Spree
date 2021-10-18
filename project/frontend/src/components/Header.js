@@ -16,9 +16,7 @@ class Header extends Component {
                    </tr>
                 </tbody>
             </table>
-          <div> 
-          </div>   
-                       
+          <div></div>                
       </header>
     );
   }
