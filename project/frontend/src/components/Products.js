@@ -17,6 +17,9 @@ class ProductInformation extends Component {
                 <div>
                     <span className="item__price"> { this.props.price } </span>
                 </div> 
+                <div>
+                <span className="add_to_cart"> <a href="#/cart">Add to Cart</a> </span>
+                </div>
             </li>
         )
     }
