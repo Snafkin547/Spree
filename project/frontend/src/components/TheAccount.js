@@ -1,5 +1,7 @@
 import "./Login.css";
 import { useState, useRef } from "react";
+import ApiUtil from '../Utils/ApiUtil';
+import HttpUtil from '../Utils/HttpUtil';
 
 export default function TheAccount() {
   const [showLoginSign, setShowLoginSign] = useState(false);
@@ -119,9 +121,10 @@ export default function TheAccount() {
         return;
       }
       // alert(" ~ line 80 ~ Sign ~ username", username)
-      console.log("username: ", username)
-      console.log("password: ", password)
-  
+      // console.log("username: ", username)
+      // console.log("password: ", password)
+      HttpUtil.post(ApiUtil.API_REGISTER, {"username": username, "password": password, "mailBox": mailBox});
+      closeModal();
     }
     return (
       <ul className="container">

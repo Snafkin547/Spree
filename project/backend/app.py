@@ -4,6 +4,7 @@ import mysql.connector
 from flask import Flask, request
 
 from search.searchInput import searchInput
+from account.register import register as reg
 
 # creates an instance of Flask app and pass it to the variable app
 app = Flask(__name__)
@@ -36,6 +37,14 @@ def searchBar():
         'message': searchInput(keyword[1:-1], mycur)
     }
     return json.dumps(res)
+
+# the function of register
+@app.route(apiPrefix + '/register', methods=['POST'])
+def register():
+    info = json.loads(request.get_data())
+    flag = reg(info, mycur)
+    mydb.commit()
+    return '1'
 
 if __name__ == '__main__':
     app.run(debug=True)

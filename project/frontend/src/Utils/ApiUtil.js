@@ -4,4 +4,5 @@ export default class ApiUtil {
 
     // Please write your function address here
     static API_SEARCH = ApiUtil.URL_ROOT + '/searchBar';
+    static API_REGISTER = ApiUtil.URL_ROOT + '/register';
 }
