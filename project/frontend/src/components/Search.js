@@ -36,7 +36,6 @@ class SearchBar extends Component {
                 {/* Pretend we got the results */}
                 <h4>{this.state.searchValue}</h4>
             </div>
-            
         )
     }
 }
