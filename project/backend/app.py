@@ -19,12 +19,12 @@ apiPrefix = '/api/v1'
 
 # database connector
 mydb = mysql.connector.connect(
-  host='localhost',
-  user='root',
-  password='',
-  database='CRUDDatabase',
+  #host='localhost',
+  user='chip',
+  password='bumet673',
+  database='ChipSpree',
   #auth_plugin='mysql_native_password',
-  port=3306
+  #port=3306
 )
 mycur = mydb.cursor()
 
