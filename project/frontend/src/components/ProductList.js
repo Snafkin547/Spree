@@ -6,7 +6,7 @@ class ProductList extends Component {
   render() {
     return (
       <div className="carousel__view">
-          <Products/>        
+          <Products/>
       </div>
     );
   }
