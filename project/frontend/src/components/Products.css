@@ -56,3 +56,17 @@
     font-size: 20px;
     height: auto;
 }
+
+.logo__image {
+    width: 100px;
+    height: auto;
+}
+
+.search__bar {
+    width: 93%;
+    margin: 0 auto;
+}
+
+li {
+    list-style: none;
+}

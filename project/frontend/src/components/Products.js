@@ -8,8 +8,8 @@ class ProductInformation extends Component {
     render() {
         return (
             <li className='product_card'>
-                <div className= "item__image">
-                    <img src={ this.props.image }></img>
+                <div>
+                <img class="item__image" src={ this.props.image } alt="Image" />
                 </div>
                 <div>
                     <span className="item__name"> { this.props.name } </span>
@@ -35,12 +35,12 @@ class Products extends Component {
         const products = {
             "productInformation": [
                 {
-                    "image": "img/iphone13-blue.jpg",
+                    "image": "img/iphone13.png",
                     "name": "iPhone 13 Pro",
                     "price": 1200,
                 },
                 {
-                    "image": "img/CGG_Samsun_galaxys21_phantom",
+                    "image": "img/CGG_Samsun_galaxys21_phantom.jpg",
                     "name": "Samsung Galaxy S21",
                     "price": 900,
                 }
