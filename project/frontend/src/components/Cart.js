@@ -1,27 +1,14 @@
 import React, { Component } from 'react';
-import './Products.css';
-import SearchBar from './Search'
+import './Cart.css';
 
-class Header extends Component {
+class Cart extends Component {
   render() {
     return (
-      <header id="header" role="banner">
-          <table className="header-tbl" role="presentation">
-              <tbody> 
-                  <tr>
-                  <td>
-                  <h1>
-                    <img class="logo__image" src={"img/chip-spree-logo.JPG"} alt="Image" />
-                  </h1>      
-                  </td>
-                  <td class="search__bar"><SearchBar/></td>
-                  </tr>
-                </tbody>
-            </table>
-          <div></div>                
-      </header>
+      <ul className="cart-items">
+        <a href="#/cart">My Cart</a>
+      </ul>
     );
   }
 }
 
-export default Header;
+export default Cart;

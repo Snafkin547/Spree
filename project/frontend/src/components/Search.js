@@ -5,7 +5,7 @@ import HttpUtil from '../Utils/HttpUtil';
 class SearchBar extends Component {
     constructor(props) {
         super(props);
-        this.state = {inputValue: 'iPhone', searchValue: ''};
+        this.state = {inputValue: 'type a search key', searchValue: ''};
         this.inputChange = this.inputChange.bind(this);
         this.search = this.search.bind(this);
     }
