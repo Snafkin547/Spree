@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Cart from './Cart';
-import './Products.css';
+import './Header.css';
 import SearchBar from './Search';
 import TheAccount from './TheAccount.js';
 
@@ -13,7 +14,9 @@ class Header extends Component {
                   <tr>
                   <td>
                   <h1>
-                    <img class="logo__image" src={"img/chip-spree-logo.JPG"} alt="Image" />
+                    <Link to='/'>
+                      <img class="logo__image" src={"img/chip-spree-logo.JPG"} alt="Image" />
+                    </Link>
                   </h1>      
                   </td>
                   <td class="search__bar"><SearchBar/></td>

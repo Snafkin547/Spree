@@ -1,5 +1,4 @@
 import './MainPage.css';
-import Header from '../components/Header';
 import ProductList from '../components/ProductList';
 
 function MainPage() {
@@ -18,7 +17,6 @@ function MainPage() {
     // }, []);
     return (
       <div className="App"> 
-        <Header/>
         <ProductList />
       </div>
     );
