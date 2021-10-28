@@ -17,8 +17,8 @@ class Header extends Component {
                   </h1>      
                   </td>
                   <td class="search__bar"><SearchBar/></td>
-                  <td class="account"><TheAccount /></td>
                   <td class="cart"><Cart /></td>
+                  <td class="account"><TheAccount /></td>
                   </tr>
                 </tbody>
             </table>
