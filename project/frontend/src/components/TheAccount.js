@@ -39,7 +39,6 @@ export default function TheAccount() {
     </>
   );
 
-
   function Login() {
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
