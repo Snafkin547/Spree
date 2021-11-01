@@ -5,6 +5,7 @@ from flask import Flask, request
 
 from search.searchInput import searchInput
 from account.register import register as reg
+from database import Database
 
 # creates an instance of Flask app and pass it to the variable app
 app = Flask(__name__)
@@ -19,12 +20,10 @@ apiPrefix = '/api/v1'
 
 # database connector
 mydb = mysql.connector.connect(
-  #host='localhost',
-  user='chip',
-  password='bumet673',
-  database='ChipSpree',
-  #auth_plugin='mysql_native_password',
-  #port=3306
+  host=Database.host,
+  user=Database.user,
+  password=Database.password,
+  database=Database.database,
 )
 mycur = mydb.cursor()
 
