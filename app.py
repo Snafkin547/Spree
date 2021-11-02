@@ -15,7 +15,7 @@ cors=CORS(app)
 @app.route("/")
 @cross_origin()
 def home():
-    return send_from_directory(app.static_folder, 'app.js')  
+    return send_from_directory(app.static_folder, 'App.js')  
 
 # api address
 apiPrefix = '/api/v1'
