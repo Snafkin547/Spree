@@ -3,8 +3,8 @@ import json
 import mysql.connector
 from flask import Flask, request
 
-from search.searchInput import searchInput
-from account.register import register as reg
+from project.backend.search.searchInput import searchInput
+from project.backend.account.register import register as reg
 
 # creates an instance of Flask app and pass it to the variable app
 app = Flask(__name__)
