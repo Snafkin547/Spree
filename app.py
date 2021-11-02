@@ -2,6 +2,7 @@ import json
 
 import mysql.connector
 from flask import Flask, request
+from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
 from project.backend.search.searchInput import searchInput
 from project.backend.account.register import register as reg
@@ -14,7 +15,7 @@ cors=CORS(app)
 @app.route("/")
 @cross_origin()
 def home():
-    return "Hello!"  
+    return send_from_directory(app.static_folder, 'app.js')  
 
 # api address
 apiPrefix = '/api/v1'
