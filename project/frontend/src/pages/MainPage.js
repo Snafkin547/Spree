@@ -1,4 +1,3 @@
-import './MainPage.css';
 import ProductList from '../components/ProductList';
 
 function MainPage() {
