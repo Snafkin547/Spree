@@ -29,7 +29,7 @@ mycur = mydb.cursor()
 
 # the function of search bar
 @app.route(apiPrefix + '/searchBar', methods=['POST'])
-
+@cross_origin()
 def searchBar():
     keyword = request.get_data(as_text=True)
     print('get ' + keyword)
