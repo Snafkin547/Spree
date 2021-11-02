@@ -19,12 +19,10 @@ apiPrefix = '/api/v1'
 
 # database connector
 mydb = mysql.connector.connect(
-  #host='localhost',
-  user='chip',
-  password='bumet673',
-  database='ChipSpree',
-  #auth_plugin='mysql_native_password',
-  #port=3306
+  host='us-cdbr-east-04.cleardb.com',
+  user='b1c819ea406612',
+  password='35195fc1',
+  database='heroku_993345239501248',
 )
 mycur = mydb.cursor()
 
