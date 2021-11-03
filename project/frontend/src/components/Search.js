@@ -38,7 +38,7 @@ class SearchBar extends Component {
                 <Link to='/Search'>
                     <button value={this.state.inputValue} onClick={this.search}>Search!</button>
                 </Link>
-                {/* <h4>{this.state.searchValue}</h4> */}
+                <h4>{this.state.searchValue}</h4>
             </div>
         )
     }

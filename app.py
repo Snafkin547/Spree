@@ -2,22 +2,23 @@ import json
 
 import mysql.connector
 from flask import Flask, request
-
-from search.searchInput import searchInput
-from account.register import register as reg
-from database import Database
+from flask.helpers import send_from_directory
+from flask_cors import CORS, cross_origin
+from project.backend.search.searchInput import searchInput
+from project.backend.account.register import register as reg
+from project.backend.database import Database
 
 # creates an instance of Flask app and pass it to the variable app
-app = Flask(__name__)
-
+app = Flask(__name__, static_folder="project/frontend/build", static_url_path='')
+cors=CORS(app)
 #app is the instance of Flask app 
 @app.route("/")
+@cross_origin()
 def home():
-    return "Hello!"  
+    return send_from_directory(app.static_folder, 'index.html')  
 
 # api address
 apiPrefix = '/api/v1'
-
 # database connector
 mydb = mysql.connector.connect(
   host=Database.host,
@@ -29,6 +30,7 @@ mycur = mydb.cursor()
 
 # the function of search bar
 @app.route(apiPrefix + '/searchBar', methods=['POST'])
+@cross_origin()
 def searchBar():
     keyword = request.get_data(as_text=True)
     print('get ' + keyword)
@@ -39,6 +41,7 @@ def searchBar():
 
 # the function of register
 @app.route(apiPrefix + '/register', methods=['POST'])
+@cross_origin()
 def register():
     info = json.loads(request.get_data())
     flag = reg(info, mycur)
