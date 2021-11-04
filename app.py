@@ -25,6 +25,7 @@ mydb = mysql.connector.connect(
   password='35195fc1',
   database='heroku_993345239501248',
 )
+
 mycur = mydb.cursor(buffered=True)
 
 # the function of search bar
