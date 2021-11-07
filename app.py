@@ -19,11 +19,23 @@ def home():
 # api address
 apiPrefix = '/api/v1'
 # database connector
-mydb = mysql.connector.connect(
-  host='us-cdbr-east-04.cleardb.com',
-  user='b1c819ea406612',
-  password='35195fc1',
-  database='heroku_993345239501248',
+# mydb = mysql.connector.connect(
+#   host='us-cdbr-east-04.cleardb.com',
+#   user='b1c819ea406612',
+#   password='35195fc1',
+#   database='heroku_993345239501248',
+# )
+# mycur = mydb.cursor(buffered=True)
+
+from mysql.connector import pooling
+mydb =  pooling.MySQLConnectionPool(
+    pool_name="pynative_pool",
+    pool_size=3,
+    pool_reset_session=True,
+    host='us-cdbr-east-04.cleardb.com',
+    user='b1c819ea406612',
+    password='35195fc1',
+    database='heroku_993345239501248',
 )
 
 mycur = mydb.cursor(buffered=True)
