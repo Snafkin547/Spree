@@ -54,7 +54,7 @@ def register():
     return '1'
 
 
-# the function of find user by mailbox
+# the function of check mailbox
 @app.route(apiPrefix + '/findUserByMailbox', methods=['POST'])
 @cross_origin()
 def checkMailbox():
