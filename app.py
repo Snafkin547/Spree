@@ -38,7 +38,7 @@ mydb =  pooling.MySQLConnectionPool(
     database='heroku_993345239501248',
 )
 
-mycur = mydb.cursor(buffered=True)
+mycur = mydb.get_connection().get_server_info().cursor(buffered=True)
 
 # the function of search bar
 @app.route(apiPrefix + '/searchBar', methods=['POST'])
