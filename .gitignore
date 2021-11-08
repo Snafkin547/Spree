@@ -127,3 +127,7 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+
+#VS code
+.vscode/*
+
