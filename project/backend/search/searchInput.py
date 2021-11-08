@@ -1,9 +1,16 @@
-from database.connection import connection
+#from database.connection import connection
+import mysql.connector
 
 # SearchBar results
 def searchInput(keyword):
     # database connector
-    mycur = connection().getconnection()
+    mydb = mysql.connector.connect(
+            host='us-cdbr-east-04.cleardb.com',
+            user='b1c819ea406612',
+            password='35195fc1',
+            database='heroku_993345239501248'
+    )
+    mycur = mydb.cursor(buffered=True)
     mycur.execute("SELECT * FROM ITEM WHERE name LIKE '%%%s%%' OR desc_item LIKE '%%%s%%'"%(keyword, keyword))
     res = mycur.fetchall()
     mycur.close()

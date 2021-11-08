@@ -5,7 +5,7 @@ from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
 from project.backend.search.searchInput import searchInput
 from project.backend.account.register import register as reg
-from project.backend.database.connection import connection
+#from project.backend.database.connection import connection
 
 # creates an instance of Flask app and pass it to the variable app
 app = Flask(__name__, static_folder="project/frontend/build", static_url_path='')
@@ -34,10 +34,16 @@ def searchBar():
 @app.route(apiPrefix + '/register', methods=['POST'])
 @cross_origin()
 def register():
-    mycur = connection()
+    mydb = mysql.connector.connect(
+            host='us-cdbr-east-04.cleardb.com',
+            user='b1c819ea406612',
+            password='35195fc1',
+            database='heroku_993345239501248'
+    )
     info = json.loads(request.get_data())
+    mycur = mydb.cursor(buffered=True)
     flag = reg(info, mycur)
-    mycur.commit()
+    mydb.commit()
     return '1'
 
 if __name__ == '__main__':
