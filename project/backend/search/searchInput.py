@@ -3,7 +3,7 @@ from database.connection import connection
 # SearchBar results
 def searchInput(keyword):
     # database connector
-    mycur = connection()
+    mycur = connection().getconnection()
     mycur.execute("SELECT * FROM ITEM WHERE name LIKE '%%%s%%' OR desc_item LIKE '%%%s%%'"%(keyword, keyword))
     res = mycur.fetchall()
     mycur.close()
