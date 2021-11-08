@@ -37,7 +37,7 @@ def register():
     mycur = connection()
     info = json.loads(request.get_data())
     flag = reg(info, mycur)
-    mydb.commit()
+    mycur.commit()
     return '1'
 
 if __name__ == '__main__':
