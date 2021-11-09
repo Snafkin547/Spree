@@ -29,7 +29,7 @@ def searchBar():
         'message': searchInput(keyword[1:-1])
     }
     return json.dumps(res)
-
+ 
 # the function of register
 @app.route(apiPrefix + '/register', methods=['POST'])
 @cross_origin()
