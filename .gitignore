@@ -124,6 +124,8 @@ pip-delete-this-directory.txt
 nosetests.xml
 coverage.xml
 
+# Selenium drivers
+*.exe
 
 # Sphinx documentation
 docs/_build/
