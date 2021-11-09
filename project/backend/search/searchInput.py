@@ -1,4 +1,4 @@
-from database.connection import connection
+from backend.database.connection import connection
 import mysql.connector
 
 # SearchBar results
