@@ -2,7 +2,6 @@ import mysql.connector
 
 class connection:
     def __init__(self):
-
         self.mydb = mysql.connector.connect(
             host='us-cdbr-east-04.cleardb.com',
             user='b1c819ea406612',
@@ -11,3 +10,5 @@ class connection:
         )
         self.cur=self.mydb.cursor(buffered=True)
 
+    def getconnection(self):
+        return self.cur

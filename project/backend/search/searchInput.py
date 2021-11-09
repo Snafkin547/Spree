@@ -10,7 +10,7 @@ def searchInput(keyword):
             password='35195fc1',
             database='heroku_993345239501248'
     )
-    mycur = connection().cur
+    mycur = connection().getconnection()
     mycur.execute("SELECT * FROM ITEM WHERE name LIKE '%%%s%%' OR desc_item LIKE '%%%s%%'"%(keyword, keyword))
     res = mycur.fetchall()
     mycur.close()
