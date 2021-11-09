@@ -33,16 +33,8 @@ def searchBar():
 @app.route(apiPrefix + '/register', methods=['POST'])
 @cross_origin()
 def register():
-    mydb = mysql.connector.connect(
-            host='us-cdbr-east-04.cleardb.com',
-            user='b1c819ea406612',
-            password='35195fc1',
-            database='heroku_993345239501248'
-    )
     info = json.loads(request.get_data())
-    mycur = mydb.cursor(buffered=True)
-    flag = reg(info, mycur)
-    mydb.commit()
+    flag = register(info)
     return '1'
 
 if __name__ == '__main__':
