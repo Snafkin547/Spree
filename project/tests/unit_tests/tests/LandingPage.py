@@ -1,15 +1,15 @@
-from TestSuiteBase import TestSuiteBase
+from project.tests.unit_tests.TestSuiteBase import TestSuiteBase
+from project.tests.unit_tests.web_elements.web_elements import WebElements
 
 class LandingPage(TestSuiteBase):
 
-    def test_search_tool(self):
+    TestSuiteBase.setUp()
 
-        TestSuiteBase.setUp()
-        if self.driver.find_element_by_xpath('//*[@id="header"]//table//tbody//tr//td[2]//div//button'):
+    def test_search_tool(self):        
+        if self.driver.find_element_by_xpath(WebElements.btn_search_xpath):
             print("search button found.")
-        TestSuiteBase.tearDown()
-
+        
     def test_login_button(self):
-        TestSuiteBase.setUp()
-        my_account_button = self.driver.find_elements_by_xpath("//span[contains(text(), 'My Account')]")
-        TestSuiteBase.tearDown()
+        self.driver.find_elements_by_xpath(WebElements.btn_my_account_xpath).click()
+
+    TestSuiteBase.tearDown()
