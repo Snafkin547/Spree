@@ -68,7 +68,7 @@ CREATE TABLE cp_product (
     discount_code CHAR(50),
     PRIMARY KEY (product_id),
     FOREIGN KEY (discount_code) REFERENCES discount (discount_code)
-) ENGINE=InnoDB; 
+); 
 
 CREATE TABLE shopping_session (
     id INT(30) NOT NULL AUTO_INCREMENT,
@@ -80,7 +80,7 @@ CREATE TABLE shopping_session (
     CONSTRAINT `fk_shopping_user`
         FOREIGN KEY (`user_id`) REFERENCES cp_user (`user_id `)
        
-) ENGINE=InnoDB;
+);
 
 CREATE TABLE cart_item  (
     id INT(8) NOT NULL AUTO_INCREMENT,
@@ -120,4 +120,4 @@ CREATE TABLE order_details (
         FOREIGN KEY (user_id) REFERENCES cp_user (user_id)
     CONSTRAINT `fk_order_payment`
         FOREIGN KEY (payment_id) REFERENCES cp_payment_details (id)
-) ENGINE=InnoDB;
+);
