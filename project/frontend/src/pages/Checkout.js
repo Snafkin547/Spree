@@ -5,6 +5,7 @@ import './Checkout.css';
 function CheckoutForm() {
   const [state, setMyState] = useState("Massachusetts");
   const [inputs, setInputs] = useState({});
+  const [validated, setValidated] = useState(false);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -13,10 +14,17 @@ function CheckoutForm() {
     setInputs(values => ({...values, [name]: value}))
   }
 
+
   const handleSubmit = (event) => {
-    event.preventDefault();
-    alert(inputs);
-  }
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    setValidated(true);
+    //alert("Thank you for submitting your order! You will receive a confirmation email shortly.");
+  };
+
 
   return (
     <div className="checkoutForm">
@@ -26,39 +34,46 @@ function CheckoutForm() {
           <h1>Shipping Address</h1>
           <br></br>
 
-          <label>Name:
+          <label>Name: 
           <input 
               type="text" 
+              required
               name="nameShipping" 
+              placeholder="Enter name"
               value={inputs.nameShipping || ""} 
               onChange={handleChange}
           />
           </label>
-          <label>Address Line 1:
+          <label>Address Line 1: 
           <input 
               type="text" 
+              required
               name="address1" 
+              placeholder="Address Line 1"
               value={inputs.address1 || ""} 
               onChange={handleChange}
           />
           </label>
-          <label>Address Line 2:
+          <label>Address Line 2: 
           <input 
               type="text" 
               name="address2" 
+              placeholder="Address Line 2"
               value={inputs.address2 || ""} 
               onChange={handleChange}
           />
           </label>
-          <label>City:
+          <label>City: 
           <input 
               type="text" 
+              required
               name="city" 
+              placeholder="Enter city"
               value={inputs.city || ""} 
               onChange={handleChange}
           />
           </label>
-          <label>State: 
+          <label>State:  
           <select value={state} onChange={handleChange}>
               <option value="Alabama">AL</option>
               <option value="Alaska">AK</option>
@@ -118,34 +133,50 @@ function CheckoutForm() {
               <option value="Wyoming">WY</option>              
           </select>
           </label>
-          <label>Zipcode:
+          <label>Zipcode: 
+          <input 
+              type="number" 
+              required
+              name="zip" 
+              placeholder="Zipcode"
+              value={inputs.zip || ""} 
+              onChange={handleChange}
+          />
+          </label>
+          <label>Email address:
           <input 
               type="text" 
-              name="zip" 
-              value={inputs.zip || ""} 
+              required
+              name="email" 
+              placeholder="Email address"
+              value={inputs.email || ""} 
               onChange={handleChange}
           />
           </label>
           <br></br>
 
           <h1>Payment Information</h1>
-          <label>Name on Card:
+          <label>Name on Card: 
               <input 
-              type="text" 
+              type="text"
+              required
               name="nameCard" 
+              placeholder="Enter name on credit card"
               value={inputs.nameCard || ""} 
               onChange={handleChange}
               />
           </label>
-          <label>Credit card number:
+          <label>Credit card number: 
               <input 
               type="number" 
+              required
               name="ccNumber" 
+              placeholder="Credit card number"
               value={inputs.ccNumber || ""} 
               onChange={handleChange}
               />
           </label>
-          <label>Expiration month: 
+          <label>Expiration month:  
               <select value={state} onChange={handleChange}>
                   <option value="January">January</option>
                   <option value="February">February</option>
@@ -161,7 +192,7 @@ function CheckoutForm() {
                   <option value="December">Decembe</option>
               </select>
           </label>
-          <label>Expiration year:
+          <label>Expiration year: 
               <select value={state} onChange={handleChange}>
                   <option value="2021">2021</option>
                   <option value="2022">2022</option>
@@ -170,18 +201,22 @@ function CheckoutForm() {
                   <option value="2025">2025</option>
               </select>
           </label> 
-          <label>Security code:
+          <label>Security code: 
               <input 
               type="number" 
+              required
               name="secCode" 
+              placeholder="Security code"
               value={inputs.secCode || ""} 
               onChange={handleChange}
               />
           </label>
-          <label>Billing zipcode:
+          <label>Billing zipcode: 
               <input 
               type="number" 
+              required
               name="billingZip" 
+              placeholder="Billing zipcode"
               value={inputs.billingZip || ""} 
               onChange={handleChange}
               />

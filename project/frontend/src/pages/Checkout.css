@@ -20,7 +20,7 @@
     width: 100%;
     padding: .5rem .8rem .5rem .8rem;
     margin: .9vw 0 ;
-    border:0;
+    border: gray 1px;
     border-radius: 5px;
     font-size: 20px;
 }
@@ -34,14 +34,9 @@
     bottom: 0;
     cursor: pointer;
     font-size: 20px;
-    position:absolute;
-
-}
-
-.submitBtn{
-    margin: 1rem 0 1rem 8rem;
-    margin-left: 52%;   
+    margin-left: 70%;   
     border-radius: 0 20px 20px 0; 
+    position:relative;
 }
 
 .submitBtn:hover {
