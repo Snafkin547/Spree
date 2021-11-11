@@ -21,8 +21,11 @@ function CheckoutForm() {
       event.preventDefault();
       event.stopPropagation();
     }
-    setValidated(true);
-    //alert("Thank you for submitting your order! You will receive a confirmation email shortly.");
+    else {
+      setValidated(true);
+      //alert("Thank you for submitting your order! You will receive a confirmation email shortly.");
+    }
+    
   };
 
 
@@ -37,7 +40,7 @@ function CheckoutForm() {
           <label>Name: 
           <input 
               type="text" 
-              required
+              required={true}
               name="nameShipping" 
               placeholder="Enter name"
               value={inputs.nameShipping || ""} 
@@ -47,7 +50,7 @@ function CheckoutForm() {
           <label>Address Line 1: 
           <input 
               type="text" 
-              required
+              required={true}
               name="address1" 
               placeholder="Address Line 1"
               value={inputs.address1 || ""} 
@@ -66,7 +69,7 @@ function CheckoutForm() {
           <label>City: 
           <input 
               type="text" 
-              required
+              required={true}
               name="city" 
               placeholder="Enter city"
               value={inputs.city || ""} 
@@ -136,7 +139,7 @@ function CheckoutForm() {
           <label>Zipcode: 
           <input 
               type="number" 
-              required
+              required={true}
               name="zip" 
               placeholder="Zipcode"
               value={inputs.zip || ""} 
@@ -145,8 +148,8 @@ function CheckoutForm() {
           </label>
           <label>Email address:
           <input 
-              type="text" 
-              required
+              type="email" 
+              required={true}
               name="email" 
               placeholder="Email address"
               value={inputs.email || ""} 
@@ -159,7 +162,7 @@ function CheckoutForm() {
           <label>Name on Card: 
               <input 
               type="text"
-              required
+              required={true}
               name="nameCard" 
               placeholder="Enter name on credit card"
               value={inputs.nameCard || ""} 
@@ -169,7 +172,9 @@ function CheckoutForm() {
           <label>Credit card number: 
               <input 
               type="number" 
-              required
+              required={true}
+              minLength={8}
+              maxLength={19}
               name="ccNumber" 
               placeholder="Credit card number"
               value={inputs.ccNumber || ""} 
@@ -204,7 +209,7 @@ function CheckoutForm() {
           <label>Security code: 
               <input 
               type="number" 
-              required
+              required={true}
               name="secCode" 
               placeholder="Security code"
               value={inputs.secCode || ""} 
@@ -214,7 +219,7 @@ function CheckoutForm() {
           <label>Billing zipcode: 
               <input 
               type="number" 
-              required
+              required={true}
               name="billingZip" 
               placeholder="Billing zipcode"
               value={inputs.billingZip || ""} 
