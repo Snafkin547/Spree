@@ -124,10 +124,11 @@ pip-delete-this-directory.txt
 nosetests.xml
 coverage.xml
 
-
+node_modules/
 # Sphinx documentation
 docs/_build/
 
 #VS code
 .vscode/*
 
+../package-lock.json

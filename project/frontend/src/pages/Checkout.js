@@ -14,7 +14,6 @@ function CheckoutForm() {
     setInputs(values => ({...values, [name]: value}))
   }
 
-
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {

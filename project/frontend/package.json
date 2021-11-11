@@ -16,14 +16,21 @@
     "start": "react-scripts start",
     "start-flask-backend": "cd ../backend && venv/bin/python app.py",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+  
+    "test": "node src/Checkout.test.js",
     "eject": "react-scripts eject"
   },
+
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
+  },
+  "jest": {
+      "snapshotSerializers": ["enzyme-to-json/serializer"], 
+      "collectCoverageFrom": ["src/**/*.js", "!src/index.js"],
+      "coverageReporters": ["text"]
   },
   "browserslist": {
     "production": [
