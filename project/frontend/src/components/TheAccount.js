@@ -105,11 +105,16 @@ export default function TheAccount() {
         const [repeatPassword, setRepeatPassword] = useState("");
         const [username, setUsername] = useState("");
         const [mailBox, setMailbox] = useState("");
+        const [usernamePrompt, setUsernamePrompt] = useState("")
+        const [passwordPrompt, setPasswordPrompt] = useState("")
+        const [repeatPasswordPrompt, setRepeatPasswordPrompt] = useState("")
+        const [mailBoxPrompt, setMailBoxPrompt] = useState("")
 
         function handleUsernameBlur(e) {
             if (e.target.value.length < 4 || e.target.value.length > 10) {
-                alert("Username length should be in the range 4-10");
+                setUsernamePrompt("Username length should be in the range 4-10");
             } else {
+                setUsernamePrompt("");
                 setUsername(e.target.value);
             }
         }
@@ -118,27 +123,30 @@ export default function TheAccount() {
             const passwordPattern = /([0-9]+)\S*([a-zA-Z]+)|([a-zA-Z]+)\S*([0-9]+)/ // password re pattern
 
             if (e.target.value.length < 8 || e.target.value.length > 16) {
-                alert("Password length should be in the range 8-16");
+                setPasswordPrompt("Password length should be in the range 8-16");
             } else if (e.target.value.search(passwordPattern) === -1) {
-                alert("Password should contain alphabet and number")
+                setPasswordPrompt("Password should contain alphabet and number")
             } else {
+                setPasswordPrompt("")
                 setPassword(e.target.value);
             }
         }
 
         function handleRepeatPasswordBlur(e) {
             if (password !== e.target.value) {
-                alert("The 2 password not matched!");
+                setRepeatPasswordPrompt("The 2 password not matched!");
             } else {
+                setRepeatPasswordPrompt("")
                 setRepeatPassword(e.target.value);
             }
         }
 
-        function handleMailBoxChange(e) {
+        function handleMailBoxBlur(e) {
             const mailBoxPattern = /^\w+@([a-zA-Z]+\.)+[a-zA-Z]+$/
-            if (mailBox.search(mailBoxPattern) === -1) { // illegal mailBox
-                alert("The mailbox is wrong!")
+            if (e.target.value.search(mailBoxPattern) === -1) { // illegal mailBox
+                setMailBoxPrompt("The mailbox is wrong!")
             } else {
+                setMailBoxPrompt("")
                 setMailbox(e.target.value);
             }
         }
@@ -150,11 +158,15 @@ export default function TheAccount() {
                     .then(value => {
                         flag = value
                     })
-                if (flag === 1) { // flag 1 used 0 unused
+                if (flag === 1) {
                     alert("The mailbox is used!")
                     return;
                 }
-                HttpUtil.post(ApiUtil.API_REGISTER, {"username": username, "password": password, "mailBox": mailBox});
+                await HttpUtil.post(ApiUtil.API_REGISTER, {
+                    "username": username,
+                    "password": password,
+                    "mailBox": mailBox
+                });
                 closeModal();
             } else {
                 alert("Please check the information!Try it again!")
@@ -180,18 +192,22 @@ export default function TheAccount() {
                 <li>
                     <label htmlFor="username">Username: </label>
                     <input required type="text" id="username" onBlur={(e) => handleUsernameBlur(e)}/>
+                    <p className="prompt username">{usernamePrompt}</p>
                 </li>
                 <li>
                     <label htmlFor="password">Password: </label>
                     <input required type="password" id="password" onBlur={(e) => handlePasswordBlur(e)}/>
+                    <p className="prompt password">{passwordPrompt}</p>
                 </li>
                 <li>
                     <label htmlFor="repeat-password">Repeat Password: </label>
                     <input required type="password" id="repeat-password" onBlur={(e) => handleRepeatPasswordBlur(e)}/>
+                    <p className="prompt repeat-password">{repeatPasswordPrompt}</p>
                 </li>
                 <li>
                     <label htmlFor="mailBox">MailBox: </label>
-                    <input required type="text" id="mailBox" onChange={(e) => handleMailBoxChange(e)}/>
+                    <input required type="text" id="mailBox" onBlur={(e) => handleMailBoxBlur(e)}/>
+                    <p className="prompt mailBox">{mailBoxPrompt}</p>
                 </li>
                 <li>
                     <button onClick={() => handleSign()}>Register</button>
