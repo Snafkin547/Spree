@@ -1,26 +1,28 @@
 import React, { useState, useEffect, Component} from 'react';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import './App.css'
+import MainPage from './pages/MainPage';
+import Cart from './pages/Cart';
 import Header from './components/Header';
-import ProductList from './components/ProductList';
+import Search from './pages/Search';
 
 function App() {
-
-  // state = {
-  //   modal: true
-  // };
-
-  // selectModal = info => {
-  //   this.setState({ modal: !this.state.modal }); // true/false toggle
-  // };
-    // const [initialData, setInitialData] = this.useState([{}]);
-
-    // useEffect(()=> {
-    //     fetch("/").then(response => response.json).then(data => setInitialData(data))
-    // }, []);
     return (
-      <div className="App"> 
-        <Header/>
-        <ProductList />
+      <div>
+        <BrowserRouter>
+          <Header />
+          <Switch>
+            <Route path='/' exact>
+              <MainPage />
+            </Route>
+            <Route path='/cart'>
+              <Cart />
+            </Route>
+            <Route path='/Search'>
+              <Search />
+            </Route>
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   
