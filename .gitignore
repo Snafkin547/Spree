@@ -131,4 +131,5 @@ docs/_build/
 #VS code
 .vscode/*
 
-../package-lock.json
+#package-lock.json
+package-lock.json
