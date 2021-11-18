@@ -68,7 +68,7 @@ CREATE TABLE cp_product (
         FOREIGN KEY (discount_code) REFERENCES discount (discount_code)
 ); 
 
-CREATE TABLE shopping_session (
+CREATE TABLE cp_shopping_session (
     id INT(30) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
     user_id INT ZEROFILL,
     total DECIMAL(10) NOT NULL DEFAULT '0.00',
@@ -78,7 +78,7 @@ CREATE TABLE shopping_session (
         FOREIGN KEY (user_id) REFERENCES cp_user (user_id)       
 );
 
-CREATE TABLE cart_item  (
+CREATE TABLE cp_cart_item  (
     id INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     session_id INT,
     product_id INT,
@@ -91,7 +91,7 @@ CREATE TABLE cart_item  (
         FOREIGN KEY (product_id) REFERENCES cp_product (product_id)
 );
 
-CREATE TABLE order_details (
+CREATE TABLE cp_order_details (
     id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id INT ZEROFILL,
     payment_id INT ZEROFILL,
@@ -104,7 +104,7 @@ CREATE TABLE order_details (
         FOREIGN KEY (payment_id) REFERENCES cp_payment_details (id)
 );
 
-CREATE TABLE order_items  (
+CREATE TABLE cp_order_items  (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
     order_id INT,
     product_id INT,
@@ -115,5 +115,3 @@ CREATE TABLE order_items  (
     CONSTRAINT `fk_order_items_product`
         FOREIGN KEY (product_id) REFERENCES cp_product (product_id)   
 );
-
-
