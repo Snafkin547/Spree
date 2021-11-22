@@ -4,8 +4,10 @@ USE ChipSpree;
 CREATE TABLE USER (
 	Uid int NOT NULL AUTO_INCREMENT primary key,
 	username CHAR(128) NOT NULL,
+	firstname CHAR(128) NOT NULL,
+	lastname CHAR(128) NOT NULL,
 	password CHAR(128) NOT NULL,
-	email CHAR(128),
+	email CHAR(128) UNIQUE,
 	isBuyer TINYINT,
 	isSeller TINYINT
 );

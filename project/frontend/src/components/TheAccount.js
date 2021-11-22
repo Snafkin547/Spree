@@ -3,6 +3,7 @@ import {useState, useRef} from "react";
 import ApiUtil from '../Utils/ApiUtil';
 import HttpUtil from '../Utils/HttpUtil';
 
+
 export default function TheAccount() {
     const [showLoginSign, setShowLoginSign] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
@@ -42,26 +43,49 @@ export default function TheAccount() {
     );
 
     function Login() {
+        const [mailBoxPrompt, setMailBoxPrompt] = useState("")
+        const [passwordPrompt, setPasswordPrompt] = useState("")
+        const [mailBox, setMailbox] = useState("");
         const [password, setPassword] = useState("");
-        const [username, setUsername] = useState("");
 
-        const Modal = props => {
-            const divStyle = {
-                display: this.props.displayModal ? "block" : "none"
+        function handlePasswordBlur(e) {
+            const passwordPattern = /([0-9]+)\S*([a-zA-Z]+)|([a-zA-Z]+)\S*([0-9]+)/ // password re pattern
+
+            if (e.target.value.length < 8 || e.target.value.length > 16) {
+                setPasswordPrompt("Password length should be in the range 8-16");
+            } else if (e.target.value.search(passwordPattern) === -1) {
+                setPasswordPrompt("Password should contain alphabet and number")
+            } else {
+                setPasswordPrompt("");
+                setPassword(e.target.value);
             }
         }
 
-        function handleLoginIn() {
-            console.log("username, password", username, password)
-            return;
+        function handleMailBoxBlur(e) {
+            const mailBoxPattern = /^\w+@([a-zA-Z]+\.)+[a-zA-Z]+$/
+            if (e.target.value.search(mailBoxPattern) === -1) { // illegal mailBox
+                setMailBoxPrompt("The mailbox is wrong!");
+            } else {
+                setMailBoxPrompt("");
+                setMailbox(e.target.value);
+            }
         }
 
-        function handlePasswordChange(e) {
-            setPassword(e.target.value);
-        }
 
-        function handleUsernameChange(e) {
-            setUsername(e.target.value);
+        async function handleLoginIn() {
+            if (mailBox && password) {
+                await HttpUtil.post(ApiUtil.API_LOGIN, {'mailBox': mailBox, 'password': password})
+                    .then(response => {
+                        if (response === 1) {
+                            alert('Login successful!')
+                        } else if (response === 0) {
+                            alert('Invalid password')
+                        } else {
+                            alert('User not exist,please register!')
+                        }
+                    })
+            }
+
         }
 
         return (
@@ -78,20 +102,22 @@ export default function TheAccount() {
                 </li>
                 <h3 align="center"> Login </h3>
                 <li>
-                    <label htmlFor="username">Username: </label>
+                    <label htmlFor="mailBox">MailBox: </label>
                     <input
                         type="text"
-                        id="username"
-                        onChange={(e) => handleUsernameChange(e)}
+                        id="mailBox"
+                        onBlur={(e) => handleMailBoxBlur(e)}
                     />
+                    <p className="prompt mailBox">{mailBoxPrompt}</p>
                 </li>
                 <li>
                     <label htmlFor="password">Password: </label>
                     <input
                         type="password"
                         id="password"
-                        onChange={(e) => handlePasswordChange(e)}
+                        onBlur={(e) => handlePasswordBlur(e)}
                     />
+                    <p className="prompt password">{passwordPrompt}</p>
                 </li>
                 <li>
                     <button onClick={() => handleLoginIn()}>Login</button>
@@ -101,14 +127,18 @@ export default function TheAccount() {
     }
 
     function Sign() {
-        const [password, setPassword] = useState("");
         const [repeatPassword, setRepeatPassword] = useState("");
         const [username, setUsername] = useState("");
-        const [mailBox, setMailbox] = useState("");
+        const [firstname, setFirstname] = useState("");
+        const [lastname, setLastname] = useState("");
         const [usernamePrompt, setUsernamePrompt] = useState("")
-        const [passwordPrompt, setPasswordPrompt] = useState("")
+        const [firstnamePrompt, setFirstnamePrompt] = useState("")
+        const [lastnamePrompt, setLastnamePrompt] = useState("")
         const [repeatPasswordPrompt, setRepeatPasswordPrompt] = useState("")
         const [mailBoxPrompt, setMailBoxPrompt] = useState("")
+        const [passwordPrompt, setPasswordPrompt] = useState("")
+        const [mailBox, setMailbox] = useState("");
+        const [password, setPassword] = useState("");
 
         function handleUsernameBlur(e) {
             if (e.target.value.length < 4 || e.target.value.length > 10) {
@@ -116,6 +146,24 @@ export default function TheAccount() {
             } else {
                 setUsernamePrompt("");
                 setUsername(e.target.value);
+            }
+        }
+
+        function handleFirstnameBlur(e) {
+            if (e.target.value.length < 4 || e.target.value.length > 10) {
+                setFirstnamePrompt("Firstname length should be in the range 4-10");
+            } else {
+                setFirstnamePrompt("");
+                setFirstname(e.target.value);
+            }
+        }
+
+        function handleLastnameBlur(e) {
+            if (e.target.value.length < 4 || e.target.value.length > 10) {
+                setLastnamePrompt("Lastname length should be in the range 4-10");
+            } else {
+                setLastnamePrompt("");
+                setLastname(e.target.value);
             }
         }
 
@@ -127,8 +175,18 @@ export default function TheAccount() {
             } else if (e.target.value.search(passwordPattern) === -1) {
                 setPasswordPrompt("Password should contain alphabet and number")
             } else {
-                setPasswordPrompt("")
+                setPasswordPrompt("");
                 setPassword(e.target.value);
+            }
+        }
+
+        function handleMailBoxBlur(e) {
+            const mailBoxPattern = /^\w+@([a-zA-Z]+\.)+[a-zA-Z]+$/
+            if (e.target.value.search(mailBoxPattern) === -1) { // illegal mailBox
+                setMailBoxPrompt("The mailbox is wrong!");
+            } else {
+                setMailBoxPrompt("");
+                setMailbox(e.target.value);
             }
         }
 
@@ -141,18 +199,9 @@ export default function TheAccount() {
             }
         }
 
-        function handleMailBoxBlur(e) {
-            const mailBoxPattern = /^\w+@([a-zA-Z]+\.)+[a-zA-Z]+$/
-            if (e.target.value.search(mailBoxPattern) === -1) { // illegal mailBox
-                setMailBoxPrompt("The mailbox is wrong!")
-            } else {
-                setMailBoxPrompt("")
-                setMailbox(e.target.value);
-            }
-        }
 
         async function handleSign() {
-            if (username && password && repeatPassword && mailBox && password === repeatPassword) {
+            if (username && firstname && lastname && password && repeatPassword && mailBox && password === repeatPassword) {
                 let flag
                 await HttpUtil.post(ApiUtil.API_CHECKMAILBOX, {'mailBox': mailBox}) // check mailbox
                     .then(value => {
@@ -164,16 +213,20 @@ export default function TheAccount() {
                 }
                 await HttpUtil.post(ApiUtil.API_REGISTER, {
                     "username": username,
+                    "firstname": firstname,
+                    "lastname": lastname,
                     "password": password,
                     "mailBox": mailBox
-                });
+                })
+                    .then(response => {
+                        if (response === 1) {
+                            alert('You just registered successfully!')
+                        }
+                    })
                 closeModal();
             } else {
                 alert("Please check the information!Try it again!")
             }
-            // alert(" ~ line 80 ~ Sign ~ username", username)
-            // console.log("username: ", username)
-            // console.log("password: ", password)
         }
 
         return (
@@ -193,6 +246,16 @@ export default function TheAccount() {
                     <label htmlFor="username">Username: </label>
                     <input required type="text" id="username" onBlur={(e) => handleUsernameBlur(e)}/>
                     <p className="prompt username">{usernamePrompt}</p>
+                </li>
+                <li>
+                    <label htmlFor="firstname">Firstname: </label>
+                    <input required type="text" id="firstname" onBlur={(e) => handleFirstnameBlur(e)}/>
+                    <p className="prompt firstname">{firstnamePrompt}</p>
+                </li>
+                <li>
+                    <label htmlFor="lastname">Lastname: </label>
+                    <input required type="text" id="lastname" onBlur={(e) => handleLastnameBlur(e)}/>
+                    <p className="prompt lastname">{lastnamePrompt}</p>
                 </li>
                 <li>
                     <label htmlFor="password">Password: </label>
