@@ -1,5 +1,10 @@
+from ..database.prod_database import ProdDatabase
+
 # SearchBar results
-def searchInput(keyword, mycur):
+def searchInput(keyword):
+    mydb = ProdDatabase()
+    myconn = mydb.connectDB()
+    mycur = myconn.cursor(buffered=True)
     mycur.execute("SELECT * FROM cp_product WHERE name LIKE '%%%s%%' OR desc_item LIKE '%%%s%%'"%(keyword, keyword))
     res = mycur.fetchall()
     if res:
