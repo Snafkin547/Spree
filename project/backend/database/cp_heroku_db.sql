@@ -13,7 +13,7 @@ CREATE TABLE cp_user (
     UNIQUE KEY email (email ASC) 
 );
 
---User has address country/cities tables
+-- Possibility to create country/cities tables to fetch for user information
 -- had to add ZEROFILL on the user_id to be exactly the same
 CREATE TABLE cp_user_address (
 	id int(10) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
@@ -52,6 +52,8 @@ CREATE TABLE cp_discount (
     discount_code CHAR(50) NOT NULL UNIQUE KEY
 ); 
 
+
+--  product_code was created hopping I could concatinate product_id + product_init to generaye product_code but no success in setting it up
 CREATE TABLE cp_product (
 	product_id int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     product_init VARCHAR(50) NOT NULL,

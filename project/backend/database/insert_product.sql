@@ -1,3 +1,5 @@
+-- Useful mysql commands
+
 -- set the auto incrementation to 1 in <table> that has AUTO INCREMENT
 SET @auto_increment_increment=1;
 
@@ -15,16 +17,15 @@ drop table cp_payment_details;
 drop table cp_user_address;
 drop table cp_user;
 
--- erro code 1215 cannot add foreign key constraint
+-- erro code 1215 cannot add foreign key constraint, check the status of engine
 SHOW ENGINE INNODB STATUS.
 
 -- Commands: verifies how the table was created to check if the user_id is a key
--- erro code 1215 cannot add foreign key constraint
-SHOW ENGINE INNODB STATUS.
 SHOW CREATE TABLE cp_user;
 
-INSERT INTO product (`product_id`, `product_init`, `name`, `desc_item`, `category`,`price`, `quantity`, `img_src`, `created_at`) VALUES
-(1, 'APLWTC', 'Apple Watch', '', 'eletronics', '399', 10, 'apple-watch-s7.jfif.jpg', '2021-11-8 17:55:22')
+-- Insert statements 
+INSERT INTO cp_product (`product_init`, `name`, `desc_item`, `category`,`price`, `quantity`, `img_src`, `product_code`) VALUES
+                       ('APLWTC', 'Apple Watch Series 7', '45mm Midnight Aluminum', 'eletronics', '399', 19, 'img/apple-watch-series-7.jpg', 'APLWTC1')
 
 INSERT INTO cp_discount (`discount_code`, `discount_desc`, `type`, `value`, `expire_at`) VALUES
 ('CSFP5', 'Take 5% OFF your first purchase!!', 'percentage', 5.0, ''),

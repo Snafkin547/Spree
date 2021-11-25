@@ -35,7 +35,6 @@ def searchBar():
 def register():
     info = json.loads(request.get_data())
     flag = reg(info)
-    #mydb.commit()
     return '1'
 
 if __name__ == '__main__':
