@@ -1,6 +1,4 @@
 import json
-
-import mysql.connector
 from flask import Flask, request
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
@@ -18,14 +16,6 @@ def home():
 
 # api address
 apiPrefix = '/api/v1'
-# database connector
-mydb = mysql.connector.connect(
-  host='us-cdbr-east-04.cleardb.com',
-  user='b1c819ea406612',
-  password='35195fc1',
-  database='heroku_993345239501248',
-)
-mycur = mydb.cursor()
 
 # the function of search bar
 @app.route(apiPrefix + '/searchBar', methods=['POST'])
@@ -34,17 +24,16 @@ def searchBar():
     keyword = request.get_data(as_text=True)
     print('get ' + keyword)
     res = {
-        'message': searchInput(keyword[1:-1], mycur)
+        'message': searchInput(keyword[1:-1])
     }
     return json.dumps(res)
-
+    
 # the function of register
 @app.route(apiPrefix + '/register', methods=['POST'])
 @cross_origin()
 def register():
     info = json.loads(request.get_data())
-    flag = reg(info, mycur)
-    mydb.commit()
+    flag = reg(info)
     return '1'
 
 if __name__ == '__main__':
