@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Cart from './Cart';
+import MyAccountPage from './MyAccountPage';
 import './Header.css';
 import SearchBar from './Search';
 import TheAccount from './TheAccount.js';
+import { NavLink } from "react-router-dom";
+
+
+<NavLink
+    to="/MyAccountPage"
+activeStyle={{
+background:'red',
+color:'white'
+}}>
+</NavLink>
 
 class Header extends Component {
   render() {
@@ -21,6 +32,7 @@ class Header extends Component {
                   </td>
                   <td class="search__bar"><SearchBar/></td>
                   <td class="cart"><Cart /></td>
+                  <td class="myaccountpage"><MyAccountPage/></td>
                   <td class="account"><TheAccount /></td>
                   </tr>
                 </tbody>

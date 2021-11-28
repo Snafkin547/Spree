@@ -6,6 +6,8 @@ import Cart from './pages/Cart';
 import Header from './components/Header';
 import Search from './pages/Search';
 import CheckoutForm from './pages/Checkout';
+import MyAccountPage from './pages/MyAccountPage';
+
 
 function App() {
     return (
@@ -25,6 +27,10 @@ function App() {
             <Route path="/checkout">
               <CheckoutForm />
             </Route>
+            <Route path="/MyAccountPage">
+              <MyAccountPage/>
+            </Route>
+
           </Switch>
         </BrowserRouter>
       </div>
