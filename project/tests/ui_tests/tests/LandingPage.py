@@ -1,5 +1,5 @@
-from project.tests.unit_tests.TestSuiteBase import TestSuiteBase
-from project.tests.unit_tests.web_elements.web_elements import WebElements
+import ..TestSuiteBase
+from ..web_elements.web_elements import WebElements
 
 class LandingPage(TestSuiteBase):
 
@@ -13,3 +13,6 @@ class LandingPage(TestSuiteBase):
         self.driver.find_elements_by_xpath(WebElements.btn_my_account_xpath).click()
 
     TestSuiteBase.tearDown()
+    
+    if __name__ == "__main__":
+        TestSuiteBase.main()

@@ -1,5 +1,4 @@
 import unittest
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
@@ -18,9 +17,6 @@ class TestSuiteBase(unittest.TestCase):
         self.driver = webdriver.Chrome(executable_path=path_chrome_driver)
         self.driver.maximize_window()
         self.driver.get(testing_env)
-
-        # chrome_options = Options()
-        # cls.driver = webdriver.Chrome(chrome_options=chrome_options)
 
         # Chrome information for debug purposes
         print("Chrome Version:  " + self.driver.capabilities['browserVersion'])
