@@ -1,4 +1,5 @@
 import json
+from types import MethodType
 import mysql.connector
 from flask import Flask, request
 from flask.helpers import send_from_directory
@@ -6,6 +7,8 @@ from flask_cors import CORS, cross_origin
 from project.backend.search.searchInput import searchInput
 from project.backend.account.register import register as reg
 from project.backend.product.product import pickItem
+from project.backend.cart.cart import pickCart
+from project.backend.cart.addToCart import addToCart
 # creates an instance of Flask app and pass it to the variable app
 app = Flask(__name__, static_folder="project/frontend/build", static_url_path='')
 cors=CORS(app)
@@ -42,6 +45,18 @@ def register():
 def getItem():
     product=pickItem()
     return json.dumps(product)
+
+@app.route(apiPrefix + '/cart', methods = ['GET'])
+@cross_origin()
+def getCart():
+    cart_item = pickCart()
+    return json.dumps(cart_item)
+
+@app.route(apiPrefix + '/addToCart', methods=['POST'])
+@cross_origin()
+def addCart():
+    addToCart(request.get_data(as_text=True))
+    return "1"
 
 if __name__ == '__main__':
     app.run(debug=True)

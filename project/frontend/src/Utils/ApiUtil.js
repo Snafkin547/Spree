@@ -6,5 +6,8 @@ export default class ApiUtil {
     static API_SEARCH = ApiUtil.URL_ROOT + '/searchBar';
     static API_REGISTER = ApiUtil.URL_ROOT + '/register';
     static API_GETPRODUCT=ApiUtil.URL_ROOT + '/item';
+    static API_GETCART = ApiUtil.URL_ROOT + '/cart';
+    static API_ADDTOCART = ApiUtil.URL_ROOT + '/addToCart';
+    static API_CHECKOUT = ApiUtil.URL_ROOT + '/checkout';
 }
 

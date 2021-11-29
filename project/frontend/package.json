@@ -38,5 +38,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://chip-spree.herokuapp.com/"
+  "1proxy": "https://chip-spree.herokuapp.com/",
+  "proxy": "http://127.0.0.1:5000/"
 }

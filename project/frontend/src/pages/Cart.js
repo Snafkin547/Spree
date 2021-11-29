@@ -1,5 +1,8 @@
 import { Component } from "react";
 import "./Cart.css";
+import ApiUtil from "../Utils/ApiUtil";
+import HttpUtil from '../Utils/HttpUtil';
+import { Link } from "react-router-dom";
 
 // The single poduct row
 function ShopRow(props) {
@@ -46,37 +49,34 @@ function TotalBlock(props) {
 }
 
 
-// The information of products
-const cartList = [
-  {
-    name: 'IPhone',
-    price: 1200,
-    count: 1,
-    totalPrice: 1200,
-    isChecked: false
-  },
-  {
-    name: 'Galaxy',
-    price: 900,
-    count: 1,
-    totalPrice: 900,
-    isChecked: false
-  }
-];
-
-
 // Main class
 class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cartList: cartList,
+      cartList: [],
       isCheckedAll: false,
       totalPrice: 0
     };
-
-    console.log('cartList: ', this.state.cartList);
   }
+
+  componentDidMount () {
+    fetch(ApiUtil.API_GETCART,
+      {method: "GET"})
+      .then(response => response.json())
+      .then(result => {
+        for (let key in result) {
+          this.state.cartList.push(
+            {
+              name: result[key]["name"],
+              price: result[key]["price"],
+              count: 1,
+              totalPrice: result[key]["price"],
+              isChecked: false
+            });
+        }
+      })
+  };
 
   // Calculate the total price
   handleTotalPrice = () => {
@@ -167,9 +167,8 @@ class Cart extends Component {
 
   //Checkout
   handleBuy = () => {
-    if (this.handleHaveCheck()) {
-      alert('Thank you for your purchase!');
-    } else {
+    HttpUtil.post(ApiUtil.API_CHECKOUT, this.state.totalPrice);
+    if (!this.handleHaveCheck()) {
       alert('No seleted!');
     }
   }
@@ -215,10 +214,12 @@ class Cart extends Component {
           </tbody>
         </table>
         <TotalBlock totalPrice={this.state.totalPrice} />
-        <button
-          id="shopCar-buyBtn"
-          className="primary-btn"
-          onClick={this.handleBuy}>Checkout</button>
+        <Link to="/checkout">
+          <button
+            id="shopCar-buyBtn"
+            className="primary-btn"
+            onClick={this.handleBuy}>Checkout</button>
+        </Link>
         <button
           id="shopCar-removeBtn"
           className="remove-btn"
