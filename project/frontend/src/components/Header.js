@@ -5,16 +5,7 @@ import MyAccountPage from './MyAccountPage';
 import './Header.css';
 import SearchBar from './Search';
 import TheAccount from './TheAccount.js';
-import { NavLink } from "react-router-dom";
 
-
-<NavLink
-    to="/MyAccountPage"
-activeStyle={{
-background:'red',
-color:'white'
-}}>
-</NavLink>
 
 class Header extends Component {
   render() {
