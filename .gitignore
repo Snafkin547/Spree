@@ -127,5 +127,12 @@ coverage.xml
 # Selenium drivers
 *.exe
 
+node_modules/
 # Sphinx documentation
 docs/_build/
+
+#VS code
+.vscode/*
+
+#package-lock.json
+package-lock.json
