@@ -3,9 +3,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 class TestSuiteBase(unittest.TestCase):
-    envDatabase = None
-    tests_started = 0
-    tests_finished = 0
 
     def setUp(self):
         # paths       

@@ -1,4 +1,4 @@
-import ..TestSuiteBase
+from project.tests.ui_tests import TestSuiteBase
 from ..web_elements.web_elements import WebElements
 
 class LandingPage(TestSuiteBase):

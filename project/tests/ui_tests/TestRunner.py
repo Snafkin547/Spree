@@ -1,17 +1,13 @@
-import unittest
-from unittest import runner
-
-class TestSet1(unittest.TestCase):
-    def test1(self):
-        self.assertEqual('foo'.upper(), 'FOO')
-    
-    def test2(self):
-        a = 1 + 1
-        self.assertEqual(a, 2)
+from unittest import TestLoader, TestSuite, TextTestRunner
+from tests.LandingPage import LandingPage
+import project.tests.ui_tests.TestSuiteBase
 
 if __name__ == '__main__':
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestSet1))
-
-    runner = unittest.TextTestRunner()
+    
+    loader = TestLoader()
+    suite = TestSuite((
+        loader.loadTestsFromTestCase(LandingPage)
+    ))
+    
+    runner = TextTestRunner(verbosity=2)
     runner.run(suite)
