@@ -10,10 +10,10 @@ def searchInput(keyword):
             database='heroku_993345239501248'
     )
     mycur = mydb.cursor(buffered=True)
-    mycur.execute("SELECT * FROM ITEM WHERE name LIKE '%%%s%%' OR desc_item LIKE '%%%s%%'"%(keyword, keyword))
+    mycur.execute("SELECT * FROM cp_product WHERE name LIKE '%%%s%%' OR desc_item LIKE '%%%s%%'"%(keyword, keyword))
     res = mycur.fetchall()
     mycur.close()
     if res:
-        res = map(lambda x: x[1], res)
+        res = map(lambda x: x[2], res)
         return 'We prepared '+', '.join(res)+' for you!'
     return 'Sorry, we do not have what you want.'
