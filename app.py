@@ -39,24 +39,21 @@ def register():
     flag = reg(info)
     return '1'
 
-
 # the function of check mailbox
 @app.route(apiPrefix + '/findUserByMailbox', methods=['POST'])
 @cross_origin()
 def checkMailbox():
     mailbox = json.loads(request.get_data())['mailBox']
-    user = findUserByMailbox(mailbox, mycur)
+    user = findUserByMailbox(mailbox)
     return '1' if user else '0'
-
 
 # the function of login
 @app.route(apiPrefix + '/login', methods=['POST'])
 @cross_origin()
 def login():
     info = json.loads(request.get_data())
-    flag = loginByMailBox(info, mycur)
+    flag = loginByMailBox(info)
     return flag  # 1:successes login 0:invalid password -1:user not exist
-
 
 if __name__ == '__main__':
     app.run(debug=True)

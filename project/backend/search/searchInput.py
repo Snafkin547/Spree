@@ -1,6 +1,5 @@
 from ..database.prod_database import ProdDatabase
 from mysql.connector import Error
-import mysql.connector
 
 # SearchBar results
 def searchInput(keyword):
