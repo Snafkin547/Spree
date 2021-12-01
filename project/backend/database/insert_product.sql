@@ -30,3 +30,15 @@ INSERT INTO cp_product (`product_init`, `name`, `desc_item`, `category`,`price`,
 INSERT INTO cp_discount (`discount_code`, `discount_desc`, `type`, `value`, `expire_at`) VALUES
 ('CSFP5', 'Take 5% OFF your first purchase!!', 'percentage', 5.0, ''),
 ('FreeShipping', 'Free shipping on all orders!!', '', '', '2021-12-01 23:59:59');
+
+-- Alter table add/drop columns
+alter table cp_payment_details ADD name_on_card VARCHAR(128) NOT NULL; 
+alter table cp_payment_details ADD card_number VARCHAR(128) NOT NULL; 
+alter table cp_payment_details ADD exp_month int(5) NOT NULL; 
+alter table cp_payment_details ADD exp_year int(5) NOT NULL;
+alter table cp_payment_details ADD bill_zipcode int(10) NOT NULL; 
+ALTER TABLE cp_payment_details DROP COLUMN account_no;
+ALTER TABLE cp_payment_details DROP COLUMN expiry;
+
+-- Change column position in table
+ALTER TABLE cp_payment_details MODIFY security_code int(5) NOT NULL AFTER bill_zipcode;

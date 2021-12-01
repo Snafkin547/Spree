@@ -33,11 +33,14 @@ CREATE TABLE cp_user_address (
 CREATE TABLE cp_payment_details (
 	id int(10) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
 	user_id int ZEROFILL,
-	payment_type VARCHAR(128) NOT NULL,
-    provider VARCHAR(128) NOT NULL,
-    account_no int(10) NOT NULL,
+    payment_type VARCHAR(128) NOT NULL,
+    provider VARCHAaccount_noR(50) NOT NULL,
+    name_on_card VARCHAR(128) NOT NULL,
+    card_number VARCHAR(128) NOT NULL,
+    exp_month int(5) NOT NULL,
+    exp_year int(5) NOT NULL,
     security_code int(5) NOT NULL,
-    expiry DATE NOT NULL,
+    bill_zipcode int(10) NOT NULL,
     CONSTRAINT `fk_payment_user`
         FOREIGN KEY (user_id) REFERENCES cp_user (user_id)
 );
