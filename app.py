@@ -1,6 +1,4 @@
 import json
-
-import mysql.connector
 from flask import Flask, request
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
@@ -13,25 +11,14 @@ from project.backend.account.findUser import findUserByMailbox
 app = Flask(__name__, static_folder="project/frontend/build", static_url_path='')
 cors = CORS(app)
 
-
 # app is the instance of Flask app
 @app.route("/")
 @cross_origin()
 def home():
     return send_from_directory(app.static_folder, 'index.html')
 
-
 # api address
 apiPrefix = '/api/v1'
-# database connector
-mydb = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password='password',
-    database='chipspree',
-)
-mycur = mydb.cursor()
-
 
 # the function of search bar
 @app.route(apiPrefix + '/searchBar', methods=['POST'])
@@ -40,18 +27,16 @@ def searchBar():
     keyword = request.get_data(as_text=True)
     print('get ' + keyword)
     res = {
-        'message': searchInput(keyword[1:-1], mycur)
+        'message': searchInput(keyword[1:-1])
     }
     return json.dumps(res)
-
-
+    
 # the function of register
 @app.route(apiPrefix + '/register', methods=['POST'])
 @cross_origin()
 def register():
     info = json.loads(request.get_data())
-    flag = reg(info, mycur)
-    mydb.commit()
+    flag = reg(info)
     return '1'
 
 
