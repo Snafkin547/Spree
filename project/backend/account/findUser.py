@@ -5,7 +5,7 @@ def findUserByMailbox(mailbox):
     my_db = ProdDatabase()
     my_conn = my_db.connectDB()
     my_cur = my_conn.cursor(buffered=True)
-    sql_select_query = "SELECT * FROM user WHERE email = '%s'" % mailbox
+    sql_select_query = "SELECT * FROM cp_user WHERE email = '%s'" % mailbox
     results = ""
     try:
         my_cur.execute(sql_select_query)
