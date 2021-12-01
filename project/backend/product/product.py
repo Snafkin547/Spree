@@ -1,15 +1,11 @@
-import mysql.connector
 
+from ..database.prod_database import ProdDatabase
 # SearchBar results
 def pickItem():
     # database connector
-    mydb = mysql.connector.connect(
-            host='us-cdbr-east-04.cleardb.com',
-            user='b1c819ea406612',
-            password='35195fc1',
-            database='heroku_993345239501248'
-    )
-    mycur = mydb.cursor(buffered=True)
+    my_db = ProdDatabase()
+    my_conn = my_db.connectDB()
+    mycur = my_conn.cursor(buffered=True)
     mycur.execute("SELECT * FROM cp_product ORDER BY RAND() LIMIT 2")
     res = mycur.fetchall()
     print(res)
