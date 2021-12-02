@@ -1,6 +1,7 @@
 import { Component, React, useEffect, useState } from 'react';
 import './Products.css';  // style sheet for this part of the UI
-
+import ApiUtil from '../Utils/ApiUtil';
+import HttpUtil from '../Utils/HttpUtil';
 
 // this class describes how we render the product information cards
 // prop the data you pass to your react component so it knows what values to put in certain fields, instead of hard coding it will be dynamic
@@ -23,31 +24,30 @@ class ProductInformation extends Component {
             </li>
         )
     }
-
 }
 
 
 class Products extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {productA: {}, productB: {}};
+    }
+    componentDidMount () {
+        fetch(ApiUtil.API_GETPRODUCT,
+            {method: "GET"})
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            this.setState({productA: result[0], productB: result[1]});
+        })};
+
     // render() ask components to describe what they want their section of the UI to look like based on the current combination of props and state
     render() {
-
         // product proprierties 
         const products = {
-            "productInformation": [
-                {
-                    "image": "img/iphone13.png",
-                    "name": "iPhone 13 Pro",
-                    "price": 1200,
-                },
-                {
-                    "image": "img/CGG_Samsun_galaxys21_phantom.jpg",
-                    "name": "Samsung Galaxy S21",
-                    "price": 900,
-                }
-            ]
-
+            "productInformation": [this.state.productA, 
+                                    this.state.productB] 
         }
-
         // API path
         const productInformationComponent = products.productInformation.map(productInformationObject => {
             return (
