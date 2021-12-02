@@ -14,3 +14,6 @@ def register(info):
         return True
     except Error as e:
         print(e)
+    finally:
+        my_cur.close()
+        my_conn.close()

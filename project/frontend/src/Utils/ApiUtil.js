@@ -6,5 +6,6 @@ export default class ApiUtil {
     static API_SEARCH = ApiUtil.URL_ROOT + '/searchBar';
     static API_REGISTER = ApiUtil.URL_ROOT + '/register';
     static API_GETPRODUCT=ApiUtil.URL_ROOT + '/item';
+    static API_CHECKMAILBOX = ApiUtil.URL_ROOT + '/findUserByMailbox';
+    static API_LOGIN = ApiUtil.URL_ROOT + '/login';
 }
-
