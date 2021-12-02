@@ -1,6 +1,6 @@
 from unittest import TestLoader, TestSuite, TextTestRunner
 from tests.LandingPage import LandingPage
-import project.tests.ui_tests.TestSuiteBase
+import tests.ui_tests.TestSuiteBase
 
 if __name__ == '__main__':
     
