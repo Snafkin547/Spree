@@ -151,11 +151,14 @@ class Cart extends Component {
   // Remove
   handleRemove = () => {
     if (this.handleHaveCheck()) {
+      let removeList = [];
       this.state.cartList.forEach((item) => {
         if (item.isChecked) {
+          removeList.push(item.name);
           this.state.cartList = this.state.cartList.filter((ele) => ele !== item);
         }
       });
+      HttpUtil.post(ApiUtil.API_REMOVEFROMCART, removeList);
       this.setState({
         cartList: this.state.cartList,
         totalPrice: this.handleTotalPrice()
