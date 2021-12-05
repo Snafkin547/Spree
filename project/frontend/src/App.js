@@ -6,7 +6,6 @@ import Cart from './pages/Cart';
 import Header from './components/Header';
 import Search from './pages/Search';
 import CheckoutForm from './pages/Checkout';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
     return (

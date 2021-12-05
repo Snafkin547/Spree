@@ -5,11 +5,9 @@
   "dependencies": {
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-<<<<<<< HEAD
+
     "axios": "^0.24.0",
-=======
     "formik": "^2.2.9",
->>>>>>> 447cc094 (EN-030 redid form using Formik and Yup for better layout, validation, handling of errors)
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.3.0",
@@ -44,11 +42,6 @@
       "last 1 safari version"
     ]
   },
-<<<<<<< HEAD
-  "proxy": "https://chip-spree.herokuapp.com/"
 
-}   
-=======
-  "proxy": "http://127.0.0.1:5000/"
+  "proxy": "https://chip-spree.herokuapp.com/"
 }
->>>>>>> 447cc094 (EN-030 redid form using Formik and Yup for better layout, validation, handling of errors)
