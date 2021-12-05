@@ -42,5 +42,17 @@ def getItem():
     product=pickItem()
     return json.dumps(product)
 
+@app.route(apiPrefix+ '/item', methods=['GET'])
+@cross_origin()
+def getOrderItem():
+    orderItem=pickOrderItem()
+    return json.dumps(orderItem)
+
+@app.route(apiPrefix+ '/item', methods=['GET'])
+@cross_origin()
+def getUserInfo():
+    userInfo=findUserInfo()
+    return json.dumps(userInfo)
+
 if __name__ == '__main__':
     app.run(debug=True)
