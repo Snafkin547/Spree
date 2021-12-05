@@ -12,7 +12,7 @@ def loginByMailBox(info):
     try:
         user = findUserByMailbox(info['mailBox'])
         if user:
-            password = user[4]
+            password = user[2]
             if check_password_hash(password, info['password']):
                 res = '1'
             else:
