@@ -224,7 +224,8 @@ export default function TheAccount() {
         async function handleSign() {
             if (username && firstname && lastname && password && repeatPassword && mailBox && password === repeatPassword) {
                 let flag
-                await HttpUtil.post(ApiUtil.API_CHECKMAILBOX, {'mailBox': mailBox}) // check mailbox
+                const url = ApiUtil.API_CHECKMAILBOX
+                await HttpUtil.post(url, {'mailBox': mailBox}) // check mailbox
                     .then(value => {
                         flag = value
                     })

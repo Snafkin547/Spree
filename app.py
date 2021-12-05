@@ -20,17 +20,6 @@ def home():
 # api address
 apiPrefix = '/api/v1'
 
-# the function of search bar
-@app.route(apiPrefix + '/searchBar', methods=['POST'])
-@cross_origin()
-def searchBar():
-    keyword = request.get_data(as_text=True)
-    print('get ' + keyword)
-    res = {
-        'message': searchInput(keyword[1:-1])
-    }
-    return json.dumps(res)
-    
 # the function of register
 @app.route(apiPrefix + '/register', methods=['POST'])
 @cross_origin()
