@@ -11,8 +11,8 @@ export default function TheAccount() {
     const [isLogin, setIsLogin] = useState(false);
 
     useEffect(() => {
-        let username = window.localStorage.getItem("username")
-        if (username) {
+        let mailBox = window.localStorage.getItem("mailBox")
+        if (mailBox) {
             setIsLogin(true)
         }
     })
@@ -202,7 +202,7 @@ export default function TheAccount() {
         }
 
         function handleMailBoxBlur(e) {
-            const mailBoxPattern = /^\w+@([a-zA-Z]+\.)+[a-zA-Z]+$/
+            const mailBoxPattern = /^\w+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+$/
             if (e.target.value.search(mailBoxPattern) === -1) { // illegal mailBox
                 setMailBoxPrompt("The mailbox is wrong!");
             } else {
@@ -243,7 +243,7 @@ export default function TheAccount() {
                         if (response === 1) {
                             alert('You just registered successfully!')
                             closeModal()
-                            setShowSign(true)
+                            setShowLogin(true)
                         }
                     })
 
