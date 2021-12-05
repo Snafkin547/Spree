@@ -1,16 +1,17 @@
-import mysql.connector
+from ..database.prod_database import ProdDatabase
+from mysql.connector import Error
 
 def removeFromCart(removeList):
     # database connector
-    mydb = mysql.connector.connect(
-            host='us-cdbr-east-04.cleardb.com',
-            user='b1c819ea406612',
-            password='35195fc1',
-            database='heroku_993345239501248'
-    )
-    mycur = mydb.cursor(buffered=True)
-    for s in removeList:
-        mycur.execute("DELETE FROM cp_cart_item WHERE product_id = (SELECT product_id FROM cp_product WHERE name = '%s')"%(s))
-    mydb.commit()
-    mycur.close()
-    return True
+    my_db = ProdDatabase()
+    my_conn = my_db.connectDB()
+    my_cur = my_conn.cursor(buffered=True)
+    try:
+        for s in removeList:
+            sql_deleteCart = "DELETE FROM cp_cart_item WHERE product_id = (SELECT product_id FROM cp_product WHERE name = '%s')"%(s)
+            my_cur.execute(sql_deleteCart)
+        my_db.commitDB()
+        my_cur.close()
+        return True
+    except Error as e:
+        print(e)

@@ -32,13 +32,13 @@ def searchBar():
         'message': searchInput(keyword[1:-1])
     }
     return json.dumps(res)
- 
+    
 # the function of register
 @app.route(apiPrefix + '/register', methods=['POST'])
 @cross_origin()
 def register():
     info = json.loads(request.get_data())
-    flag = register(info)
+    flag = reg(info)
     return '1'
 
 @app.route(apiPrefix+ '/item', methods=['GET'])
