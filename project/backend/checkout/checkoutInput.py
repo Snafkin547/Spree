@@ -16,4 +16,6 @@ def insertCheckoutInfoToDB(inputObject):
     # execute two inserts in a commit
     my_conn.commit()
     print("finished insert to db")
+    my_cur.close()
+    my_conn.close()
     return "updated DB in heroku"
