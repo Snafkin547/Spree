@@ -1,4 +1,4 @@
-from telnetlib import EC
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from project.tests.ui_tests.TestSuiteBase import TestSuiteBase
@@ -19,7 +19,8 @@ class LandingPage(TestSuiteBase):
         search_box = self.driver.find_element_by_xpath(WebElements.txt_box_search)
         search_box.send_keys('apple watch')
         self.driver.find_element_by_xpath(WebElements.btn_search).click()
-        if not self.driver.find_element_by_xpath(WebElements.panel_product_list).is_displayed():
+        if WebDriverWait(self.driver, 5).until(
+            EC.invisibility_of_element((By.XPATH, WebElements.panel_product_list))):
             self.driver.find_element_by_xpath(WebElements.btn_home).click()
             WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, WebElements.panel_product_list)))
         else:

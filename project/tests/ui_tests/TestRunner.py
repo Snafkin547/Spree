@@ -6,7 +6,7 @@ if __name__ == '__main__':
     
     loader = TestLoader()
     suite = TestSuite((
-        loader.loadTestsFromTestCase(LandingPage),
+        #loader.loadTestsFromTestCase(LandingPage),
         loader.loadTestsFromTestCase(Search)
     ))
     
