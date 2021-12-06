@@ -51,6 +51,7 @@ const CheckoutForm = () => {
                     zip: '',
                     email: '',
                     nameCard: '',
+                    typeCard: '',
                     ccNumber: '',
                     exp_month: '',
                     exp_year: '',
@@ -87,6 +88,11 @@ const CheckoutForm = () => {
                         .required('Required'),
                     nameCard: Yup.string()
                         .max(40, 'Must be 26 characters or less')
+                        .required('Required'),
+                    typeCard: Yup.string()
+                        .oneOf(
+                            ['Visa', 'Mastercard', 'American Express', 'Discover'], 'Invalid Card Type'
+                        )
                         .required('Required'),
                     ccNumber: Yup.string()
                         .max(20, 'Must be 20 digits or less')
@@ -239,6 +245,15 @@ const CheckoutForm = () => {
                         type="text"
                         placeholder="Cardholder name"
                     />
+
+                    <MySelect label="Credit card type" name="typeCard">
+                        <option value="">Select credit card type</option>
+                        <option value="Visa">Visa</option>
+                        <option value="Mastercard">Mastercard</option>
+                        <option value="American Express">American Express</option>
+                        <option value="Discover">Discover</option>
+                    </MySelect>
+
 
                     <MyTextInput
                         label="Credit card number"
