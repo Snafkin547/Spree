@@ -5,6 +5,10 @@ from flask_cors import CORS, cross_origin
 from project.backend.search.searchInput import searchInput
 from project.backend.account.register import register as reg
 from project.backend.product.product import pickItem
+from project.backend.myAccountPage.orderHistory import pickOrderItem
+from project.backend.myAccountPage.userInfo import findUserInfo
+
+
 # creates an instance of Flask app and pass it to the variable app
 app = Flask(__name__, static_folder="project/frontend/build", static_url_path='')
 cors=CORS(app)
@@ -42,17 +46,17 @@ def getItem():
     product=pickItem()
     return json.dumps(product)
 
-@app.route(apiPrefix+ '/item', methods=['GET'])
+@app.route(apiPrefix+ '/getItems', methods=['GET'])
 @cross_origin()
 def getOrderItem():
     orderItem=pickOrderItem()
     return json.dumps(orderItem)
 
-@app.route(apiPrefix+ '/item', methods=['GET'])
+@app.route(apiPrefix+ '/getUserInfo', methods=['GET'])
 @cross_origin()
 def getUserInfo():
-    userInfo=findUserInfo()
-    return json.dumps(userInfo)
+    userInformation=findUserInfo()
+    return json.dumps(userInformation)
 
 if __name__ == '__main__':
     app.run(debug=True)
