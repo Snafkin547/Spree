@@ -14,7 +14,7 @@ def findUserInfo(user_id):
     
     #print ' '.join([line.strip() for line in sql.splitlines()]).strip()
     query = """
-SELECT first_name, last_name FROM cp_user WHERE user_id=""" + str(user_id)
+    SELECT first_name, last_name FROM cp_user WHERE user_id=""" + str(user_id)
  
     mycur.execute(query)
     res = mycur.fetchall()
@@ -24,7 +24,8 @@ SELECT first_name, last_name FROM cp_user WHERE user_id=""" + str(user_id)
     for row in res:
         data.append({
             "first_name": row[0],
-            "last_name": row[1]
+            "last_name": row[1],
+            
         })
     
     mycur.close()

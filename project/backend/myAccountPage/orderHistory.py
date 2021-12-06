@@ -31,6 +31,6 @@ def pickOrderItem(user_id):
         data.append({
             "name": row[0]
         })
-    
+               
     mycur.close()
     return data
