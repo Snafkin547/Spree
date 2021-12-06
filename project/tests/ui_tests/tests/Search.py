@@ -13,11 +13,12 @@ class Search(TestSuiteBase):
         search_box = self.driver.find_element_by_xpath(WebElements.txt_box_search)
         search_box.send_keys('apple watch')
         self.driver.find_element_by_xpath(WebElements.btn_search).click()
-        self.driver.implicitly_wait(10)
-        search_res = self.driver.find_element(By.XPATH(WebElements.label_search_msg)).get_property()
+        self.driver.implicitly_wait(5)
+        search_res = self.driver.find_element(By.CSS_SELECTOR, "h4").tag_name
+        # h4[contains(text(), 'We prepared Apple Watch Series 7 for you!'"))
         #search_res = self.driver.find_element_by_xpath(WebElements.label_search_msg).find_element_by_css_selector('h4.text')
         # #header > table > tbody > tr > td.search__bar > div > h4
-        print(search_res)
+        print(search_res.)
         assert search_res == "We prepared Apple Watch Series 7 for you!"
 
         # search for a key word that will be found by product description
