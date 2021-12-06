@@ -42,3 +42,5 @@ ALTER TABLE cp_payment_details DROP COLUMN expiry;
 
 -- Change column position in table
 ALTER TABLE cp_payment_details MODIFY security_code int(5) NOT NULL AFTER bill_zipcode;
+ALTER TABLE cp_user_address ADD COLUMN delivery_to VARCHAR(128) NOT NULL FIRST;
+DELETE FROM cp_user_address;

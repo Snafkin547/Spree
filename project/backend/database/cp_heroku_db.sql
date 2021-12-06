@@ -18,6 +18,7 @@ CREATE TABLE cp_user (
 CREATE TABLE cp_user_address (
 	id int(10) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
 	user_id int(10) ZEROFILL,
+	deliver_to VARCHAR(128) NOT NULL,
 	address_line1 VARCHAR(128) NOT NULL,
     address_line2 VARCHAR(128),
     city VARCHAR(128) NOT NULL,
