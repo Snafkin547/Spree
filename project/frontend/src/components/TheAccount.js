@@ -1,5 +1,5 @@
 import "./Login.css";
-import {useState, useRef} from "react";
+import {useState, useEffect} from "react";
 import ApiUtil from '../Utils/ApiUtil';
 import HttpUtil from '../Utils/HttpUtil';
 
@@ -8,6 +8,14 @@ export default function TheAccount() {
     const [showLoginSign, setShowLoginSign] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [showSign, setShowSign] = useState(false);
+    const [isLogin, setIsLogin] = useState(false);
+
+    useEffect(() => {
+        let mailBox = window.localStorage.getItem("mailBox")
+        if (mailBox) {
+            setIsLogin(true)
+        }
+    })
 
     function handleShowLogin() {
         setShowLogin(true);
@@ -19,6 +27,11 @@ export default function TheAccount() {
         setShowSign(true);
     }
 
+    function handleLogout() {
+        window.localStorage.clear();
+        setIsLogin(false);
+    }
+
     function closeModal() {
         setShowLogin(false);
         setShowSign(false);
@@ -28,15 +41,20 @@ export default function TheAccount() {
         <>
             <div className="the-account">
           <span onClick={() => setShowLoginSign(!showLoginSign)}>
-            My Account
+            {isLogin ? window.localStorage.getItem("mailBox") : "My Account"}
           </span>
             </div>
             {showLoginSign && (
-                <ul className="login-sign" onClick={() => setShowLoginSign(false)}>
-                    <li onClick={() => handleShowLogin()}>Login</li>
-                    <li onClick={() => handleShowSign()}>Sign Up</li>
-                </ul>
+                isLogin ?
+                    <ul className="login-sign" onClick={() => setShowLoginSign(false)}>
+                        <li onClick={() => handleLogout()}>Logout</li>
+                    </ul> :
+                    <ul className="login-sign" onClick={() => setShowLoginSign(false)}>
+                        <li onClick={() => handleShowLogin()}>Login</li>
+                        <li onClick={() => handleShowSign()}>Sign Up</li>
+                    </ul>
             )}
+
             {showLogin && <Login/>}
             {showSign && <Sign/>}
         </>
@@ -78,6 +96,9 @@ export default function TheAccount() {
                     .then(response => {
                         if (response === 1) {
                             alert('Login successful!')
+                            // window.localStorage.setItem("username", username);
+                            window.localStorage.setItem("mailBox", mailBox);
+                            closeModal();
                         } else if (response === 0) {
                             alert('Invalid password')
                         } else {
@@ -181,7 +202,7 @@ export default function TheAccount() {
         }
 
         function handleMailBoxBlur(e) {
-            const mailBoxPattern = /^\w+@([a-zA-Z]+\.)+[a-zA-Z]+$/
+            const mailBoxPattern = /^\w+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+$/
             if (e.target.value.search(mailBoxPattern) === -1) { // illegal mailBox
                 setMailBoxPrompt("The mailbox is wrong!");
             } else {
@@ -203,7 +224,8 @@ export default function TheAccount() {
         async function handleSign() {
             if (username && firstname && lastname && password && repeatPassword && mailBox && password === repeatPassword) {
                 let flag
-                await HttpUtil.post(ApiUtil.API_CHECKMAILBOX, {'mailBox': mailBox}) // check mailbox
+                const url = ApiUtil.API_CHECKMAILBOX
+                await HttpUtil.post(url, {'mailBox': mailBox}) // check mailbox
                     .then(value => {
                         flag = value
                     })
@@ -221,9 +243,11 @@ export default function TheAccount() {
                     .then(response => {
                         if (response === 1) {
                             alert('You just registered successfully!')
+                            closeModal()
+                            setShowLogin(true)
                         }
                     })
-                closeModal();
+
             } else {
                 alert("Please check the information!Try it again!")
             }

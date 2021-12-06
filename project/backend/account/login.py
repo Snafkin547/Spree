@@ -3,15 +3,16 @@ from mysql.connector import Error
 from werkzeug.security import check_password_hash  # check_password_hash
 from project.backend.account.findUser import findUserByMailbox
 
+
 def loginByMailBox(info):
     my_db = ProdDatabase()
     my_conn = my_db.connectDB()
     my_cur = my_conn.cursor(buffered=True)
     res = '-1'
-    try:        
-        user = findUserByMailbox(info['mailBox'], my_cur)
+    try:
+        user = findUserByMailbox(info['mailBox'])
         if user:
-            password = user[4]
+            password = user[2]
             if check_password_hash(password, info['password']):
                 res = '1'
             else:
