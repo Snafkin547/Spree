@@ -8,14 +8,14 @@ import HttpUtil from '../Utils/HttpUtil';
             return (
                 <li className='user_card'>
                     <div>
-                        <span className="user_name"> { this.props.firstName } </span>
+                        <span className="first_name"> { this.props.first_name } </span>
                     </div>        
                     <div>
-                        <span className="user_last_name"> { this.props.lastName } </span>
+                        <span className="last_name"> { this.props.last_name } </span>
                     </div> 
 
                     <div>
-                        <span className="user_address"> { this.props.address } </span>
+                        <span className="ddress"> { this.props.address } </span>
                     </div> 
                 </li>
             )

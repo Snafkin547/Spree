@@ -1,4 +1,5 @@
 import json
+import sys
 from flask import Flask, request
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
@@ -49,13 +50,16 @@ def getItem():
 @app.route(apiPrefix+ '/getItems', methods=['GET'])
 @cross_origin()
 def getOrderItem():
+    user_id = request.args.get('user_id')
     orderItem=pickOrderItem(user_id)
     return json.dumps(orderItem)
 
 @app.route(apiPrefix+ '/getUserInfo', methods=['GET'])
 @cross_origin()
 def getUserInfo():
+    user_id = request.args.get('user_id')
     userInformation=findUserInfo(user_id)
+    print(userInformation, file=sys.stderr)
     return json.dumps(userInformation)
 
 if __name__ == '__main__':
