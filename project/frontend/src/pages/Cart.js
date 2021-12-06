@@ -174,6 +174,7 @@ class Cart extends Component {
     if (!this.handleHaveCheck()) {
       alert('No seleted!');
     }
+    this.handleRemove();
   }
 
   render() {
