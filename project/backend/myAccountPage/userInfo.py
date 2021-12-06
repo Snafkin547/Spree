@@ -16,4 +16,3 @@ def findUserInfo(user_id):
     keys=[ "first name", "last name", "email","address"]
     return dict(zip(keys,[res[0][7],res[0][2],float(res[0][5])])), dict(zip(keys,[res[1][7],res[1][2],float(res[1][5])]))
     
-findUserInfo()

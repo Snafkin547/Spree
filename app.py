@@ -49,13 +49,13 @@ def getItem():
 @app.route(apiPrefix+ '/getItems', methods=['GET'])
 @cross_origin()
 def getOrderItem():
-    orderItem=pickOrderItem()
+    orderItem=pickOrderItem(user_id)
     return json.dumps(orderItem)
 
 @app.route(apiPrefix+ '/getUserInfo', methods=['GET'])
 @cross_origin()
 def getUserInfo():
-    userInformation=findUserInfo()
+    userInformation=findUserInfo(user_id)
     return json.dumps(userInformation)
 
 if __name__ == '__main__':
