@@ -37,7 +37,7 @@ import HttpUtil from '../Utils/HttpUtil';
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                this.setState({firstName: result[0], lastName: result[1], address: result[3]});
+                this.setState({firstName: result[0], lastName: result[1], address: result[2]});
             })};
     
         // render() ask components to describe what they want their section of the UI to look like based on the current combination of props and state
