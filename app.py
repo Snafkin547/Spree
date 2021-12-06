@@ -6,6 +6,7 @@ from project.backend.search.searchInput import searchInput
 from project.backend.account.register import register as reg
 from project.backend.account.login import loginByMailBox
 from project.backend.account.findUser import findUserByMailbox
+from project.backend.product.product import pickItem
 
 # creates an instance of Flask app and pass it to the variable app
 app = Flask(__name__, static_folder="project/frontend/build", static_url_path='')
@@ -19,6 +20,17 @@ def home():
 
 # api address
 apiPrefix = '/api/v1'
+
+# the function of search bar
+@app.route(apiPrefix + '/searchBar', methods=['POST'])
+@cross_origin()
+def searchBar():
+    keyword = request.get_data(as_text=True)
+    print('get ' + keyword)
+    res = {
+        'message': searchInput(keyword[1:-1])
+    }
+    return json.dumps(res)
 
 # the function of register
 @app.route(apiPrefix + '/register', methods=['POST'])
@@ -43,6 +55,12 @@ def login():
     info = json.loads(request.get_data())
     flag = loginByMailBox(info)
     return flag  # 1:successes login 0:invalid password -1:user not exist
+
+@app.route(apiPrefix+ '/item', methods=['GET'])
+@cross_origin()
+def getItem():
+    product=pickItem()
+    return json.dumps(product)
 
 if __name__ == '__main__':
     app.run(debug=True)
