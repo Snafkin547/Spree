@@ -3,6 +3,7 @@ from flask import Flask, request
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
 from project.backend.search.searchInput import searchInput
+from project.backend.checkout.checkoutInput import insertCheckoutInfoToDB
 from project.backend.account.register import register as reg
 from project.backend.account.login import loginByMailBox
 from project.backend.account.findUser import findUserByMailbox
@@ -62,5 +63,14 @@ def getItem():
     product=pickItem()
     return json.dumps(product)
 
+     
+# the function of checkout
+@app.route(apiPrefix + '/checkout', methods=['POST'])
+@cross_origin()
+def checkout():
+    infoJsonObject = json.loads(request.get_data())
+    print("in app.py backend info, data posted from checkout form: ", infoJsonObject)
+    return insertCheckoutInfoToDB(infoJsonObject)
+    
 if __name__ == '__main__':
     app.run(debug=True)
