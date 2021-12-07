@@ -1,4 +1,5 @@
 import json
+import sys
 from flask import Flask, request
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
@@ -7,6 +8,9 @@ from project.backend.account.register import register as reg
 from project.backend.account.login import loginByMailBox
 from project.backend.account.findUser import findUserByMailbox
 from project.backend.product.product import pickItem
+from project.backend.myAccountPage.orderHistory import pickOrderItem
+from project.backend.myAccountPage.userInfo import findUserInfo
+
 
 # creates an instance of Flask app and pass it to the variable app
 app = Flask(__name__, static_folder="project/frontend/build", static_url_path='')
@@ -61,6 +65,21 @@ def login():
 def getItem():
     product=pickItem()
     return json.dumps(product)
+
+@app.route(apiPrefix+ '/getItems', methods=['GET'])
+@cross_origin()
+def getOrderItem():
+    user_id = request.args.get('user_id')
+    orderItem=pickOrderItem(user_id)
+    return json.dumps(orderItem)
+
+@app.route(apiPrefix+ '/getUserInfo', methods=['GET'])
+@cross_origin()
+def getUserInfo():
+    user_id = request.args.get('user_id')
+    userInformation=findUserInfo(user_id)
+    print(userInformation, file=sys.stderr)
+    return json.dumps(userInformation)
 
 if __name__ == '__main__':
     app.run(debug=True)

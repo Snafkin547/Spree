@@ -8,4 +8,7 @@ export default class ApiUtil {
     static API_CHECKMAILBOX = ApiUtil.URL_IP + ApiUtil.URL_ROOT + '/findUserByMailbox';
     static API_LOGIN = ApiUtil.URL_IP + ApiUtil.URL_ROOT + '/login';
     static API_GETPRODUCT=ApiUtil.URL_ROOT + '/item';
+    static API_GETORDEREDPRODUCTS=this.URL_IP + ApiUtil.URL_ROOT + '/getItems';
+    static API_GETUSERINFO=this.URL_IP + ApiUtil.URL_ROOT + '/getUserInfo';
+
 }

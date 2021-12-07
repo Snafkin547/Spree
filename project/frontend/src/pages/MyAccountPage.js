@@ -1,25 +1,17 @@
 import UserProfile from '../components/UserProfile';
 import OrderHistory from '../components/OrderHistory';
 import Layout from '../components/Layout';
-
+const user_id=405;
 
 
 export default function MyAccountPage() {
     return (
-        
         <Layout>
             <div>
-                <UserProfile 
-                    firstName="Michael"
-                    lastName="Jordan"
-                    email="michael@jordan.com"
-                />
+                <UserProfile />
             </div>
             <div>
-                <OrderHistory
-                    itemName="iPhone 13 Pro"
-                    itemPrice="1200"
-                />
+                <OrderHistory/>
             </div>
        </Layout>
        
