@@ -32,6 +32,10 @@ export default function TheAccount() {
         setIsLogin(false);
     }
 
+    function handleMyAccountInfo() {
+      
+    }
+
     function closeModal() {
         setShowLogin(false);
         setShowSign(false);
@@ -46,8 +50,9 @@ export default function TheAccount() {
             </div>
             {showLoginSign && (
                 isLogin ?
-                    <ul className="login-sign" onClick={() => setShowLoginSign(false)}>
-                        <li onClick={() => handleLogout()}>Logout</li>
+                    <ul className="login-sign" onClick={() => setShowLoginSign(false)}>   
+                        <li onClick={() => handleLogout()}>Logout</li>                     
+                        <li onClick={() => handleMyAccountInfo()}>My Account</li>                   
                     </ul> :
                     <ul className="login-sign" onClick={() => setShowLoginSign(false)}>
                         <li onClick={() => handleShowLogin()}>Login</li>

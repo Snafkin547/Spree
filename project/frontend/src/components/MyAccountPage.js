@@ -6,7 +6,7 @@ class MyAccountPage extends Component {
   render() {
     return (
       <ul className="account-page">
-        <Link to='/MyAccountPage'>My Account (after login)</Link>
+        <Link to='/MyAccountPage'></Link>
       </ul>
     );
   }

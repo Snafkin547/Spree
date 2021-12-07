@@ -1,7 +1,6 @@
 import { Component, React, useEffect, useState } from 'react';
 import './Products.css';  // style sheet for this part of the UI
 import ApiUtil from '../Utils/ApiUtil';
-import HttpUtil from '../Utils/HttpUtil';
 
 // this class describes how we render the product information cards
 // prop the data you pass to your react component so it knows what values to put in certain fields, instead of hard coding it will be dynamic
