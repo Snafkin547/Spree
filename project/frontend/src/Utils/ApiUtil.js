@@ -8,7 +8,7 @@ export default class ApiUtil {
     static API_GETPRODUCT=ApiUtil.URL_ROOT + '/item';
     static API_GETCART = ApiUtil.URL_ROOT + '/cart';
     static API_ADDTOCART = ApiUtil.URL_ROOT + '/addToCart';
-    static API_CHECKOUT = ApiUtil.URL_ROOT + '/checkout';
+    static API_TOTALPRICE = ApiUtil.URL_ROOT + '/totalPrice';
     static API_REMOVEFROMCART = ApiUtil.URL_ROOT + '/removeFromCart';
 }
 

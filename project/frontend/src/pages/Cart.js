@@ -170,7 +170,7 @@ class Cart extends Component {
 
   //Checkout
   handleBuy = () => {
-    HttpUtil.post(ApiUtil.API_CHECKOUT, this.state.totalPrice);
+    HttpUtil.post(ApiUtil.API_TOTALPRICE, this.state.totalPrice);
     if (!this.handleHaveCheck()) {
       alert('No seleted!');
     }
