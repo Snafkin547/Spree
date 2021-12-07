@@ -1,82 +1,171 @@
-import { useState } from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Formik, Form, useField } from 'formik';
+import * as Yup from 'yup';
 import './Checkout.css';
+import ApiUtil from '../Utils/ApiUtil';
+import HttpUtil from '../Utils/HttpUtil';
 
-function CheckoutForm() {
-    const [state, setMyState] = useState("Massachusetts");
-    const [inputs, setInputs] = useState({});
-    const [validated, setValidated] = useState(false);
-
-    const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setMyState(event.target.value)
-        setInputs(values => ({ ...values, [name]: value }))
-    }
-
-    const handleSubmit = (event) => {
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-        else {
-            setValidated(true);
-            //alert("Thank you for submitting your order! You will receive a confirmation email shortly.");
-        }
-
-    };
-
-
+const MyTextInput = ({ label, ...props }) => {
+    // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
+    // which we can spread on <input>. We can use field meta to show an error
+    // message if the field is invalid and it has been touched (i.e. visited)
+    const [field, meta] = useField(props);
     return (
-        <div className="checkoutForm">
-            <form onSubmit={handleSubmit}>
-                <h1>Order Summary </h1>
+        <>
+            <label htmlFor={props.id || props.name}>{label}</label>
+            <input className="text-input" {...field} {...props} />
+            {meta.touched && meta.error ? (
+                <div className="error">{meta.error}</div>
+            ) : null}
+        </>
+    );
+};
 
-                <h1>Shipping Address</h1>
-                <br></br>
+const MySelect = ({ label, ...props }) => {
+    const [field, meta] = useField(props);
+    return (
+        <div>
+            <label htmlFor={props.id || props.name}>{label}</label>
+            <select {...field} {...props} />
+            {meta.touched && meta.error ? (
+                <div className="error">{meta.error}</div>
+            ) : null}
+        </div>
+    );
+};
 
-                <label>Name:
-                    <input
+// And now we can use these
+const CheckoutForm = () => {
+    return (
+        <>
+            <h1>Checkout</h1>
+            <h2>Shipping Address</h2>
+            <Formik
+                initialValues={{
+                    name: '',
+                    address1: '',
+                    address2: '',
+                    city: '',
+                    state: '', //select dropdown
+                    zip: '',
+                    email: '',
+                    nameCard: '',
+                    typeCard: '',
+                    ccNumber: '',
+                    exp_month: '',
+                    exp_year: '',
+                    secCode: '',
+                    billingZip: ''
+
+                }}
+
+                validationSchema={Yup.object({
+                    name: Yup.string()
+                        .max(40, 'Must be 26 characters or less')
+                        .required('Required'),
+                    address1: Yup.string()
+                        .required('Required'),
+                    city: Yup.string()
+                        .required('Required'),
+                    state: Yup.string()
+                        .oneOf(
+                            ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
+                                'District of Columbia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+                                'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+                                'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon',
+                                'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'U.S. Virgin Islands', 'Utah', 'Vermont',
+                                'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
+                            'Invalid State'
+                        )
+                        .required('Required'),
+                    zip: Yup.string()
+                        .min(5, 'Must be at least 5 digits')
+                        .max(9, 'Zip code can not be longer than 9 digits')
+                        .required('Required'),
+                    email: Yup.string()
+                        .email('Invalid email address')
+                        .required('Required'),
+                    nameCard: Yup.string()
+                        .max(40, 'Must be 26 characters or less')
+                        .required('Required'),
+                    typeCard: Yup.string()
+                        .oneOf(
+                            ['Visa', 'Mastercard', 'American Express', 'Discover'], 'Invalid Card Type'
+                        )
+                        .required('Required'),
+                    ccNumber: Yup.string()
+                        .max(20, 'Must be 20 digits or less')
+                        .min(8, 'Must be at least 8 digits')
+                        .required('Required'),
+
+                    exp_month: Yup.string()
+                        .oneOf(
+                            ['1', '2', '3', '4', '5', '6', '7',
+                                '8', '9', '10', '11', '12'],
+                            'Invalid Month'
+                        )
+                        .required('Required'),
+                    exp_year: Yup.string()
+                        .oneOf(
+                            ['2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028'],
+                            'Invalid Year'
+                        )
+                        .required('Required'),
+                    secCode: Yup.string()
+                        .min(3, 'Must be 3 or 4 digits long')
+                        .max(4, 'Must be 3 or 4 digits long')
+                        .required('Required'),
+                    billingZip: Yup.string()
+                        .min(5, 'Must be at least 5 digits')
+                        .max(9, 'Zip code can not be longer than 9 digits')
+                        .required('Required'),
+
+
+                })}
+
+                onSubmit={(values, { setSubmitting }) => {
+                    console.log("in the frontend", values)
+                    HttpUtil.post(ApiUtil.API_CHECKOUT, values)
+                        // when the results return
+                        .then(
+                            res =>
+                                console.log("data from backend to front end:", res)
+                        )
+
+
+                }}
+            >
+                <Form>
+                    <MyTextInput
+                        label="Name"
+                        name="name"
                         type="text"
-                        required={true}
-                        name="nameShipping"
-                        placeholder="Enter name"
-                        value={inputs.nameShipping || ""}
-                        onChange={handleChange}
+                        placeholder="Jane Smith"
                     />
-                </label>
-                <label>Address Line 1:
-                    <input
-                        type="text"
-                        required={true}
+
+                    <MyTextInput
+                        label="Address 1"
                         name="address1"
+                        type="text"
                         placeholder="Address Line 1"
-                        value={inputs.address1 || ""}
-                        onChange={handleChange}
                     />
-                </label>
-                <label>Address Line 2:
-                    <input
-                        type="text"
+
+                    <MyTextInput
+                        label="Address 2"
                         name="address2"
-                        placeholder="Address Line 2"
-                        value={inputs.address2 || ""}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>City:
-                    <input
                         type="text"
-                        required={true}
-                        name="city"
-                        placeholder="Enter city"
-                        value={inputs.city || ""}
-                        onChange={handleChange}
+                        placeholder="Address Line 2"
                     />
-                </label>
-                <label>State:
-                    <select value={state} onChange={handleChange}>
+
+                    <MyTextInput
+                        label="City"
+                        name="city"
+                        type="text"
+                        placeholder="City"
+                    />
+                    <MySelect label="State" name="state">
+                        <option value="">Select a state</option>
                         <option value="Alabama">AL</option>
                         <option value="Alaska">AK</option>
                         <option value="American Samoa">AS</option>
@@ -133,103 +222,93 @@ function CheckoutForm() {
                         <option value="West Virginia">WV</option>
                         <option value="Wisconsin">WI</option>
                         <option value="Wyoming">WY</option>
-                    </select>
-                </label>
-                <label>Zipcode:
-                    <input
-                        type="number"
-                        required={true}
-                        name="zip"
-                        placeholder="Zipcode"
-                        value={inputs.zip || ""}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>Email address:
-                    <input
-                        type="email"
-                        required={true}
-                        name="email"
-                        placeholder="Email address"
-                        value={inputs.email || ""}
-                        onChange={handleChange}
-                    />
-                </label>
-                <br></br>
+                    </MySelect>
 
-                <h1>Payment Information</h1>
-                <label>Name on Card:
-                    <input
+                    <MyTextInput
+                        label="Zip code"
+                        name="zip"
                         type="text"
-                        required={true}
+                        placeholder="Zip code"
+                    />
+
+                    <MyTextInput
+                        label="Email Address"
+                        name="email"
+                        type="email"
+                        placeholder="myemail@gmail.com"
+                    />
+
+                    <h2>Payment Information</h2>
+                    <MyTextInput
+                        label="Cardholder's Name"
                         name="nameCard"
-                        placeholder="Enter name on credit card"
-                        value={inputs.nameCard || ""}
-                        onChange={handleChange}
+                        type="text"
+                        placeholder="Cardholder name"
                     />
-                </label>
-                <label>Credit card number:
-                    <input
-                        type="number"
-                        required={true}
-                        minLength={8}
-                        maxLength={19}
+
+                    <MySelect label="Credit card type" name="typeCard">
+                        <option value="">Select credit card type</option>
+                        <option value="Visa">Visa</option>
+                        <option value="Mastercard">Mastercard</option>
+                        <option value="American Express">American Express</option>
+                        <option value="Discover">Discover</option>
+                    </MySelect>
+
+
+                    <MyTextInput
+                        label="Credit card number"
                         name="ccNumber"
-                        placeholder="Credit card number"
-                        value={inputs.ccNumber || ""}
-                        onChange={handleChange}
+                        type="number"
+                        placeholder="Insert credit card number"
                     />
-                </label>
-                <label>Expiration month:
-                    <select value={state} onChange={handleChange}>
-                        <option value="January">January</option>
-                        <option value="February">February</option>
-                        <option value="March">March</option>
-                        <option value="April">April</option>
-                        <option value="May">May</option>
-                        <option value="June">June</option>
-                        <option value="July">July</option>
-                        <option value="August">August</option>
-                        <option value="September">September</option>
-                        <option value="October">October</option>
-                        <option value="November">November</option>
-                        <option value="December">Decembe</option>
-                    </select>
-                </label>
-                <label>Expiration year:
-                    <select value={state} onChange={handleChange}>
+
+                    <MySelect label="Expiration month" name="exp_month">
+                        <option value="">Select expiration month</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </MySelect>
+
+                    <MySelect label="Expiration year" name="exp_year">
+                        <option value="">Select expiration year</option>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
                         <option value="2023">2023</option>
                         <option value="2024">2024</option>
                         <option value="2025">2025</option>
-                    </select>
-                </label>
-                <label>Security code:
-                    <input
-                        type="number"
-                        required={true}
-                        name="secCode"
-                        placeholder="Security code"
-                        value={inputs.secCode || ""}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>Billing zipcode:
-                    <input
-                        type="number"
-                        required={true}
-                        name="billingZip"
-                        placeholder="Billing zipcode"
-                        value={inputs.billingZip || ""}
-                        onChange={handleChange}
-                    />
-                </label>
-                <button type="submit" id="submitBtn" className="submitBtn" onClick={handleSubmit}> SUBMIT</button>
-            </form>
-        </div>
-    )
-}
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                    </MySelect>
 
-//ReactDOM.render(<CheckoutForm />, document.getElementById('root'));
+
+                    <MyTextInput
+                        label="Security code"
+                        name="secCode"
+                        type="number"
+                        placeholder="Insert security code"
+                    />
+
+                    <MyTextInput
+                        label="Billing zip code"
+                        name="billingZip"
+                        type="number"
+                        placeholder="Billing zip code"
+                    />
+                    <button type="submit">Submit</button>
+
+                </Form>
+            </Formik>
+        </>
+    );
+};
 export default CheckoutForm;

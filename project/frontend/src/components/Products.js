@@ -5,7 +5,14 @@ import HttpUtil from '../Utils/HttpUtil';
 
 // this class describes how we render the product information cards
 // prop the data you pass to your react component so it knows what values to put in certain fields, instead of hard coding it will be dynamic
-class ProductInformation extends Component {    
+class ProductInformation extends Component {
+    constructor(props) {
+        super(props);
+        this.addToCart = this.addToCart.bind(this);
+    }
+    addToCart() {
+        HttpUtil.post(ApiUtil.API_ADDTOCART, this.props.name)
+    }
     render() {
         return (
             <li className='product_card'>
@@ -19,7 +26,7 @@ class ProductInformation extends Component {
                     <span className="item__price"> { this.props.price } </span>
                 </div> 
                 <div>
-                <span className="add_to_cart"> <a href="#/cart">Add to Cart</a> </span>
+                <span className="add_to_cart" onClick={this.addToCart}> <a href="#/cart">Add to Cart</a> </span>
                 </div>
             </li>
         )
