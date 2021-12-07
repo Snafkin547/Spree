@@ -6,6 +6,7 @@ import Cart from './pages/Cart';
 import Header from './components/Header';
 import Search from './pages/Search';
 import CheckoutForm from './pages/Checkout';
+import Confirmation from './pages/Confirmation';
 
 function App() {
     return (
@@ -24,6 +25,9 @@ function App() {
             </Route>
             <Route path="/checkout">
               <CheckoutForm />
+            </Route>
+            <Route path="/confirmation">
+              <Confirmation />
             </Route>
           </Switch>
         </BrowserRouter>

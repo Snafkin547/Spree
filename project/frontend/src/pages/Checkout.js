@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { withRouter } from 'react-router';
+import {Redirect} from 'react-router-dom';
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
 import './Checkout.css';
@@ -130,10 +131,10 @@ const CheckoutForm = () => {
                         // when the results return
                         .then(
                             res =>
-                                console.log("data from backend to front end:", res)
+                                console.log("data from backend to front end:", res)          
                         )
-
-
+                        //return  <Redirect  to="/confirmation" />    
+                        //this.props.history.push('/confirmation')  
                 }}
             >
                 <Form>
