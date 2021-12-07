@@ -6,6 +6,7 @@ import SearchBar from './Search';
 import TheAccount from './TheAccount.js';
 
 
+
 class Header extends Component {
   render() {
     return (

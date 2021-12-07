@@ -1,10 +1,16 @@
 import "./Login.css";
 import {useState, useEffect} from "react";
+import { useHistory } from 'react-router-dom';
 import ApiUtil from '../Utils/ApiUtil';
 import HttpUtil from '../Utils/HttpUtil';
+import { Link } from 'react-router-dom';
+import MyAccountPage from './MyAccountPage';
+
+
 
 
 export default function TheAccount() {
+    const history = useHistory();
     const [showLoginSign, setShowLoginSign] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [showSign, setShowSign] = useState(false);
@@ -33,7 +39,7 @@ export default function TheAccount() {
     }
 
     function handleMyAccountInfo() {
-      
+        history.push("/MyAccountPage")
     }
 
     function closeModal() {

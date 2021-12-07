@@ -8,54 +8,51 @@ import HttpUtil from '../Utils/HttpUtil';
             return (
                 <li className='user_card'>
                     <div>
-                        <span className="first_name"> { this.props.first_name } </span>
+                        <span className="firstName"> { this.props.firstName } </span>
                     </div>        
                     <div>
-                        <span className="last_name"> { this.props.last_name } </span>
+                        <span className="lastName"> { this.props.lastName } </span>
                     </div> 
-
                     <div>
-                        <span className="ddress"> { this.props.address } </span>
+                        <span className="address"> { this.props.address } </span>
                     </div> 
                 </li>
             )
         }
     }
-    
-    
+
+
     class UserProfile extends Component {
         constructor(props) {
             super(props);
-            this.state = {firstName: {}, lastName: {}, address: {}};
+            this.state = {};
         }
         componentDidMount () {
             fetch(ApiUtil.API_GETUSERINFO+'?'+ new URLSearchParams({
                 user_id: 405
             }).toString())
-               
-            
+
+
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                this.setState({firstName: result[0], lastName: result[1], address: result[2]});
+                this.setState({firstName: result[0]["first_name"], lastName: result[0]["last_name"]});
             })};
-    
+
         // render() ask components to describe what they want their section of the UI to look like based on the current combination of props and state
         render() {
             // product proprierties 
             const userDetails = {
-                "userInformation": [this.state.firstName, 
-                                        this.state.lastName,
-                                             this.state.address] 
+                "userInformation": [this.state] 
             }
             // API path
             const userInformationComponent = userDetails.userInformation.map(userInformationObject => {
                 return (
                     // ... = spread operator, it deconstructs the object in this case product information object, split up the each of the fields and pass them as a props in the product information
-                    <userInformation {...userInformationObject} />
+                    <UserInformation {...userInformationObject} />
                 )
             })
-        
+
           // how it will show in the DOM
           return (  
             <ul className="carousel__list">{userInformationComponent}</ul>
@@ -64,4 +61,3 @@ import HttpUtil from '../Utils/HttpUtil';
     }
 
 export default UserProfile;
-    

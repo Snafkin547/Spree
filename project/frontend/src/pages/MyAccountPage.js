@@ -8,9 +8,11 @@ export default function MyAccountPage() {
     return (
         <Layout>
             <div>
+                <header>My Info</header>
                 <UserProfile />
             </div>
             <div>
+                <header>My Orders</header>
                 <OrderHistory/>
             </div>
        </Layout>
