@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Search from './pages/Search';
 import CheckoutForm from './pages/Checkout';
 import MyAccountPage from './pages/MyAccountPage';
+import Confirmation from './pages/Confirmation';
 
 
 function App() {
@@ -30,7 +31,9 @@ function App() {
             <Route path="/MyAccountPage">
               <MyAccountPage/>
             </Route>
-
+            <Route path="/confirmation">
+              <Confirmation />
+            </Route>
           </Switch>
         </BrowserRouter>
       </div>
