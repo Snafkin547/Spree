@@ -1,4 +1,6 @@
 import json
+from types import MethodType
+import mysql.connector
 from flask import Flask, request
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
@@ -8,6 +10,9 @@ from project.backend.account.register import register as reg
 from project.backend.account.login import loginByMailBox
 from project.backend.account.findUser import findUserByMailbox
 from project.backend.product.product import pickItem
+from project.backend.cart.cart import pickCart
+from project.backend.cart.addToCart import addToCart
+from project.backend.cart.removeFromCart import removeFromCart
 
 # creates an instance of Flask app and pass it to the variable app
 app = Flask(__name__, static_folder="project/frontend/build", static_url_path='')
@@ -63,6 +68,24 @@ def getItem():
     product=pickItem()
     return json.dumps(product)
 
+@app.route(apiPrefix + '/cart', methods = ['GET'])
+@cross_origin()
+def getCart():
+    cart_item = pickCart()
+    return json.dumps(cart_item)
+
+@app.route(apiPrefix + '/addToCart', methods=['POST'])
+@cross_origin()
+def addCart():
+    addToCart(request.get_data(as_text=True))
+    return "1"
+
+@app.route(apiPrefix + '/removeFromCart', methods=['POST'])
+@cross_origin()
+def removeCart():
+    removeList = json.loads(request.get_data())
+    removeFromCart(removeList)
+    return "1"
      
 # the function of checkout
 @app.route(apiPrefix + '/checkout', methods=['POST'])

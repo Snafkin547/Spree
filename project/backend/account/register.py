@@ -13,7 +13,7 @@ def register(info):
         info['mailBox'])
     try:
         my_cur.execute(sql_select_query)
-        my_conn.commit()
+        my_db.commitDB()
         return True
     except Error as e:
         print(e)
