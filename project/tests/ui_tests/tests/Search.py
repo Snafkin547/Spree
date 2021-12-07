@@ -18,7 +18,7 @@ class Search(TestSuiteBase):
         # h4[contains(text(), 'We prepared Apple Watch Series 7 for you!'"))
         #search_res = self.driver.find_element_by_xpath(WebElements.label_search_msg).find_element_by_css_selector('h4.text')
         # #header > table > tbody > tr > td.search__bar > div > h4
-        print(search_res.)
+        print(search_res)
         assert search_res == "We prepared Apple Watch Series 7 for you!"
 
         # search for a key word that will be found by product description
