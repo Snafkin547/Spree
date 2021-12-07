@@ -47,6 +47,12 @@
 button {
     background-color: #7BED9F;
 }
+
+.prompt {
+    margin: 0;
+    color: red;
+}
+
 .close {
     color: rgb(250, 2, 2);
     background-color: rgb(255, 255, 255);
@@ -56,10 +62,11 @@ button {
     font-size: 20px;
     border-radius: 70%;
     border: 1.5px solid rgb(250, 2, 2);
-  }
-  .close:hover,
-  .close:focus {
+}
+
+.close:hover,
+.close:focus {
     text-decoration: none;
     cursor: pointer;
     outline: none;
-  }
+}
