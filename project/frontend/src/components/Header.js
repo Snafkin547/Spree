@@ -26,8 +26,7 @@ class Header extends Component {
                   <td class="account"><TheAccount /></td>
                   </tr>
                 </tbody>
-            </table>
-          <div></div>                
+            </table>             
       </header>
     );
   }

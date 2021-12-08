@@ -21,11 +21,12 @@ class OrderInformation extends Component {
 class OrderHistory extends Component {
     constructor(props) {
         super(props);
-        this.state = {orderA: {}, orderB: {}};
+        this.state = {};
     }
     componentDidMount () {
+        const userId = window.localStorage.getItem("userId");
         fetch(ApiUtil.API_GETORDEREDPRODUCTS+'?'+ new URLSearchParams({
-            user_id: 405
+            user_id: userId
         }).toString())
            
         
@@ -39,8 +40,7 @@ class OrderHistory extends Component {
     render() {
         // product proprierties 
         const orders = {
-            "orderInformation": [this.state.orderA, 
-                                    this.state.orderB] 
+            "orderInformation": [this.state] 
         }
         // API path
         const orderInformationComponent = orders.orderInformation.map(orderInformationObject => {

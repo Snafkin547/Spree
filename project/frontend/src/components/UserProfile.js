@@ -17,7 +17,7 @@ import HttpUtil from '../Utils/HttpUtil';
                         <span className="address"> { this.props.address } </span>
                     </div> 
                 </li>
-            )
+           )
         }
     }
 
@@ -28,8 +28,9 @@ import HttpUtil from '../Utils/HttpUtil';
             this.state = {};
         }
         componentDidMount () {
+            const userId = window.localStorage.getItem("userId");
             fetch(ApiUtil.API_GETUSERINFO+'?'+ new URLSearchParams({
-                user_id: 405
+                user_id: userId
             }).toString())
 
 

@@ -17,8 +17,8 @@ export default function TheAccount() {
     const [isLogin, setIsLogin] = useState(false);
 
     useEffect(() => {
-        let mailBox = window.localStorage.getItem("mailBox")
-        if (mailBox) {
+        let userId = window.localStorage.getItem("userId")
+        if (userId) {
             setIsLogin(true)
         }
     })
@@ -105,9 +105,11 @@ export default function TheAccount() {
             if (mailBox && password) {
                 await HttpUtil.post(ApiUtil.API_LOGIN, {'mailBox': mailBox, 'password': password})
                     .then(response => {
-                        if (response === 1) {
+                        if (response > 0) {
                             alert('Login successful!')
                             // window.localStorage.setItem("username", username);
+                            const userId = response;
+                            window.localStorage.setItem("userId", userId);
                             window.localStorage.setItem("mailBox", mailBox);
                             closeModal();
                         } else if (response === 0) {
