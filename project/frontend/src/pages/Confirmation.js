@@ -2,7 +2,7 @@ import React from 'react';
 
 const Confirmation = () => {
     return (
-            <h1>Thank you for your order! Order #123 has been received and a confirmation will be emailed to you shortly.</h1>
+            <h3>Thank you for your order! Order has been received and a confirmation will be emailed to you shortly.</h3>
     );
 };
 export default Confirmation;
