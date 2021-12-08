@@ -53,16 +53,7 @@
     -webkit-tap-highlight-color: transparent;
   }
   
-  html {
-    font-size: 16px;
-    font-family: -apple-system, BlinkMacSystemFont, "avenir next", avenir,
-      "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial,
-      sans-serif;
-    margin: 0;
-    padding: 0;
-    text-decoration-skip-ink: "auto";
-  }
-  
+
   :root {
     --gray-900: #1a202c;
     --gray-800: #2d3748;
@@ -98,15 +89,6 @@
     --focus-ring-color: var(--blue-500);
   }
   
-  body {
-    padding: 0;
-    margin: calc((100vh / 25) * 1.563) calc((100vw / 25) * 1.563);
-    background-color: white;
-    font-weight: 400;
-    line-height: 1.563;
-    color: var(--text-color);
-    caret-color: var(--text-color);
-  }
   
   @media (prefers-color-scheme: dark) {
     body {
@@ -432,41 +414,9 @@
     }
   }
   
-  input[type="submit"],
-  input[type="reset"],
-  input[type="button"],
-  button {
-    padding: 0.5rem 1.25rem;
-    font-size: 1rem;
-    border-radius: 10px;
-    background-color: var(--gray-700);
-    border: 2px solid var(--gray-700);
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    display: inline-block;
-    line-height: initial;
-    transition: background-color 200ms ease-in-out, border 200ms ease-in-out,
-      transform 200ms ease-in-out;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
-  }
   
-  @media (prefers-color-scheme: dark) {
-    input[type="submit"],
-    input[type="reset"],
-    input[type="button"],
-    button {
-      background-color: white;
-      border: 2px solid white;
-      color: var(--gray-800);
-    }
-  }
+  
+
   
   @media (hover: hover) {
     input[type="submit"]:hover,
@@ -496,44 +446,6 @@
     outline: none;
   }
   
-  /* Tables
-  ––––––––––––––––––––––––––––––––– */
-  table {
-    width: 100%;
-    border-spacing: 0;
-    margin-bottom: 1.563rem;
-    font-variant-numeric: tabular-nums;
-  }
-  
-  th,
-  td {
-    padding: 0.5rem 0.5rem 0.5rem 0;
-    margin: 0;
-  }
-  
-  th {
-    font-weight: bold;
-    text-align: left;
-    border-bottom: 2px solid var(--gray-300);
-    color: var(--gray-300);
-  }
-  
-  @media (prefers-color-scheme: dark) {
-    th {
-      border-color: var(--gray-700);
-      color: var(--gray-700);
-    }
-  }
-  
-  td {
-    border-bottom: 2px solid var(--gray-300);
-  }
-  
-  @media (prefers-color-scheme: dark) {
-    td {
-      border-color: var(--gray-700);
-    }
-  }
   
   /* Code
   ––––––––––––––––––––––––––––––––– */
@@ -652,26 +564,7 @@
     }
   }
   
-  button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed !important;
-  }
-  
-  button + button {
-    margin-left: 0.5rem;
-  }
-  
-  button.secondary,
-  button[type="reset"] {
-    background-color: var(--gray-300);
-    border: 2px solid var(--gray-300);
-    color: var(--gray-900);
-  }
-  
-  button.secondary:hover,
-  button[type="reset"]:hover {
-    background-color: var(--gray-400);
-  }
+ 
   
 
   input[type="email"],
