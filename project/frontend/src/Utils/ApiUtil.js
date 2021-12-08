@@ -11,4 +11,9 @@ export default class ApiUtil {
     static API_GETORDEREDPRODUCTS=this.URL_IP + ApiUtil.URL_ROOT + '/getItems';
     static API_GETUSERINFO=this.URL_IP + ApiUtil.URL_ROOT + '/getUserInfo';
 
+    static API_GETCART = ApiUtil.URL_ROOT + '/cart';
+    static API_ADDTOCART = ApiUtil.URL_ROOT + '/addToCart';
+    static API_TOTALPRICE = ApiUtil.URL_ROOT + '/totalPrice';
+    static API_REMOVEFROMCART = ApiUtil.URL_ROOT + '/removeFromCart';
 }
+
