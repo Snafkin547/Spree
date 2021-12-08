@@ -39,11 +39,11 @@ export default function TheAccount() {
 
     return (
         <>
-            <div className="the-account">
+            <ul className="cart-items">
           <span onClick={() => setShowLoginSign(!showLoginSign)}>
             {isLogin ? window.localStorage.getItem("mailBox") : "My Account"}
           </span>
-            </div>
+            </ul>
             {showLoginSign && (
                 isLogin ?
                     <ul className="login-sign" onClick={() => setShowLoginSign(false)}>
