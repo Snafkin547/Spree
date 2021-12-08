@@ -1,6 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router';
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
 import './Checkout.css';
@@ -132,10 +131,16 @@ const CheckoutForm = () => {
                         .then(
                             res =>
                                 console.log("data from backend to front end:", res)          
-                        )
-                        //return  <Redirect  to="/confirmation" />    
-                        //this.props.history.push('/confirmation')  
-                }}
+                                
+                        );
+                        setSubmitting(false);
+                        this.props.history.replace("/confirmation");
+                        console.log("finished in confirmation")   
+                       // return <Redirect to='/confirmation' />;
+                         
+                }
+            
+            }
             >
                 <Form>
                     <MyTextInput
