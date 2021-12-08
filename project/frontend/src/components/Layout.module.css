@@ -1,7 +1,22 @@
 .container {
-    padding-right: 100px;
-    padding-left: 100px;
-    padding-top: 10px;
-    color: black;
+    width: 800px;
+    margin: 0px auto;
+}
 
+.heading {
+    border-bottom: 1px solid black;
+}
+
+.orderHistory {
+    width: 100%;
+}
+
+.orderHistory th {
+    text-align: left;
+    background-color: #efefef;
+    padding: 5px;
+}
+
+.orderHistory td {
+    padding: 5px;
 }

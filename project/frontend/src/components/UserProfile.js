@@ -1,22 +1,21 @@
 import { Component, React, useEffect, useState } from 'react';
 import ApiUtil from '../Utils/ApiUtil';
 import HttpUtil from '../Utils/HttpUtil';
+import styles from '../components/Layout.module.css'
 
 
     class UserInformation extends Component {    
         render() {
             return (
-                <li className='user_card'>
+                <div className={styles.userInformation}>
                     <div>
                         <span className="firstName"> { this.props.firstName } </span>
-                    </div>        
-                    <div>
                         <span className="lastName"> { this.props.lastName } </span>
-                    </div> 
+                    </div>
                     <div>
                         <span className="address"> { this.props.address } </span>
                     </div> 
-                </li>
+                </div>
            )
         }
     }
@@ -55,9 +54,7 @@ import HttpUtil from '../Utils/HttpUtil';
             })
 
           // how it will show in the DOM
-          return (  
-            <ul className="carousel__list">{userInformationComponent}</ul>
-          ); 
+          return userInformationComponent; 
       }
     }
 

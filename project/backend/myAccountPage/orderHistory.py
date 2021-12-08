@@ -16,7 +16,7 @@ def pickOrderItem(user_id):
     my_conn = my_db.connectDB()
     mycur = my_conn.cursor(buffered=True)
     query = """
-        SELECT cp_product.`name`, cp_order_details.total, cp_user.first_name, cp_user.last_name
+        SELECT cp_product.`name`, cp_product.price, cp_user.first_name, cp_user.last_name
         FROM cp_order_items
         INNER JOIN cp_order_details ON cp_order_items.order_id = cp_order_details.id
         INNER JOIN cp_product ON cp_product.product_id = cp_order_items.product_id
@@ -29,7 +29,8 @@ def pickOrderItem(user_id):
     
     for row in res:
         data.append({
-            "name": row[0]
+            "name": row[0],
+            "price": str(row[1])
         })
                
     mycur.close()
