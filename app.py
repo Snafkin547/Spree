@@ -1,4 +1,5 @@
 import json
+import sys
 from types import MethodType
 import mysql.connector
 from flask import Flask, request
@@ -10,6 +11,9 @@ from project.backend.account.register import register as reg
 from project.backend.account.login import loginByMailBox
 from project.backend.account.findUser import findUserByMailbox
 from project.backend.product.product import pickItem
+from project.backend.myAccountPage.orderHistory import pickOrderItem
+from project.backend.myAccountPage.userInfo import findUserInfo
+
 from project.backend.cart.cart import pickCart
 from project.backend.cart.addToCart import addToCart
 from project.backend.cart.removeFromCart import removeFromCart
@@ -67,6 +71,21 @@ def login():
 def getItem():
     product=pickItem()
     return json.dumps(product)
+
+@app.route(apiPrefix+ '/getItems', methods=['GET'])
+@cross_origin()
+def getOrderItem():
+    user_id = request.args.get('user_id')
+    orderItem=pickOrderItem(user_id)
+    return json.dumps(orderItem)
+
+@app.route(apiPrefix+ '/getUserInfo', methods=['GET'])
+@cross_origin()
+def getUserInfo():
+    user_id = request.args.get('user_id')
+    userInformation=findUserInfo(user_id)
+    print(userInformation, file=sys.stderr)
+    return json.dumps(userInformation)
 
 @app.route(apiPrefix + '/cart', methods = ['GET'])
 @cross_origin()
