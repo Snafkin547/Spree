@@ -1,5 +1,5 @@
 export default class ApiUtil {
-    static URL_IP = 'http://127.0.0.1:5000';
+    static URL_IP = 'https://chip-spree-testenv.herokuapp.com';
     static URL_ROOT = '/api/v1'
     
     // Please write your function address here
