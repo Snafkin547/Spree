@@ -9,11 +9,12 @@
 
 .orderHistory {
     width: 100%;
+    color: black;
 }
 
 .orderHistory th {
     text-align: left;
-    background-color: #efefef;
+    color: black;
     padding: 5px;
 }
 
