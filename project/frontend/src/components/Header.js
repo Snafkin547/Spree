@@ -5,6 +5,8 @@ import './Header.css';
 import SearchBar from './Search';
 import TheAccount from './TheAccount.js';
 
+
+
 class Header extends Component {
   render() {
     return (
@@ -24,8 +26,7 @@ class Header extends Component {
                   <td class="account"><TheAccount /></td>
                   </tr>
                 </tbody>
-            </table>
-          <div></div>                
+            </table>             
       </header>
     );
   }

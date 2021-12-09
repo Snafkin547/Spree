@@ -14,7 +14,7 @@ def loginByMailBox(info):
         if user:
             password = user[2]
             if check_password_hash(password, info['password']):
-                res = '1'
+                res = str(user[0])
             else:
                 res = '0'
     except Error as e:

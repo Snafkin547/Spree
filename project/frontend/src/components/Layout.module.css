@@ -1,0 +1,23 @@
+.container {
+    width: 800px;
+    margin: 0px auto;
+}
+
+.heading {
+    border-bottom: 1px solid black;
+}
+
+.orderHistory {
+    width: 100%;
+    color: black;
+}
+
+.orderHistory th {
+    text-align: left;
+    color: black;
+    padding: 5px;
+}
+
+.orderHistory td {
+    padding: 5px;
+}

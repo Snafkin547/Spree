@@ -1,18 +1,24 @@
 import "./Login.css";
 import {useState, useEffect} from "react";
+import { useHistory } from 'react-router-dom';
 import ApiUtil from '../Utils/ApiUtil';
 import HttpUtil from '../Utils/HttpUtil';
+import { Link } from 'react-router-dom';
+import MyAccountPage from './MyAccountPage';
+
+
 
 
 export default function TheAccount() {
+    const history = useHistory();
     const [showLoginSign, setShowLoginSign] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [showSign, setShowSign] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
 
     useEffect(() => {
-        let mailBox = window.localStorage.getItem("mailBox")
-        if (mailBox) {
+        let userId = window.localStorage.getItem("userId")
+        if (userId) {
             setIsLogin(true)
         }
     })
@@ -32,6 +38,10 @@ export default function TheAccount() {
         setIsLogin(false);
     }
 
+    function handleMyAccountInfo() {
+        history.push("/MyAccountPage")
+    }
+
     function closeModal() {
         setShowLogin(false);
         setShowSign(false);
@@ -46,8 +56,9 @@ export default function TheAccount() {
             </ul>
             {showLoginSign && (
                 isLogin ?
-                    <ul className="login-sign" onClick={() => setShowLoginSign(false)}>
-                        <li onClick={() => handleLogout()}>Logout</li>
+                    <ul className="login-sign" onClick={() => setShowLoginSign(false)}>   
+                        <li onClick={() => handleLogout()}>Logout</li>                     
+                        <li onClick={() => handleMyAccountInfo()}>My Account</li>                   
                     </ul> :
                     <ul className="login-sign" onClick={() => setShowLoginSign(false)}>
                         <li onClick={() => handleShowLogin()}>Login</li>
@@ -94,9 +105,11 @@ export default function TheAccount() {
             if (mailBox && password) {
                 await HttpUtil.post(ApiUtil.API_LOGIN, {'mailBox': mailBox, 'password': password})
                     .then(response => {
-                        if (response === 1) {
+                        if (response > 0) {
                             alert('Login successful!')
                             // window.localStorage.setItem("username", username);
+                            const userId = response;
+                            window.localStorage.setItem("userId", userId);
                             window.localStorage.setItem("mailBox", mailBox);
                             closeModal();
                         } else if (response === 0) {
