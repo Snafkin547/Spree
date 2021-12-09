@@ -7,9 +7,9 @@ if __name__ == '__main__':
     
     loader = TestLoader()
     suite = TestSuite((
-        #loader.loadTestsFromTestCase(LandingPage),
-        loader.loadTestsFromTestCase(Search),
-        loader.loadTestsFromTestCase(Login)
+        loader.loadTestsFromTestCase(LandingPage)
+        #loader.loadTestsFromTestCase(Search),
+        #loader.loadTestsFromTestCase(Login)
     ))
     
     runner = TextTestRunner(verbosity=2)
