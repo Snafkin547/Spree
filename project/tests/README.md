@@ -12,27 +12,27 @@ Selenium is an automated framework for frontend testing.
 
 2. Next, we'll need a **browser driver** for Selenium, so that it has something to control as a testing site. You can use whatever browser you like for this.
 
-   [Chrome](https://sites.google.com/chromium.org/driver/) / [Edge]([Microsoft Edge Driver - Microsoft Edge Developer](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)) / [Firefox](https://github.com/mozilla/geckodriver/releases) / [Safari](https://webkit.org/blog/6900/webdriver-support-in-safari-10/) ~~/ Or google it yourself~~
+   [Chrome](https://sites.google.com/chromium.org/driver/) / [Edge]([Microsoft Edge Driver - Microsoft Edge Developer](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)) / [Firefox](https://github.com/mozilla/geckodriver/releases) / [Safari](https://webkit.org/blog/6900/webdriver-support-in-safari-10/)
 
 3. Move your driver to somewhere that's in **PATH**, or leave it somewhere you know and manually specify the path in your code. Relative paths work as well.
 
-   - `smoke_test.py` uses a relative path. `.gitignore` has `*.exe` in it at time of writing this document (10/16/2021), so you should be fine if you have a driver somewhere.
+## Running the tests
 
-## Basic usage
-
- `./scripts/smoke_test.py` is made for basic testing. Modifying instructions are available in its docstring (at the beginning of the file). 
-
-Open a command line window in `./scripts` folder and **run the following command** once you have everything installed:
-
+1. To run individual tests by accessing the directory the test exists `project/tests/ui_tests/tests`. 
+    Inside the tests directory run the individual test by typing the test suite name: 
+    
 ``````
-python smoke_test.py
+LandingPage.py 
+`````` 
+
+2. To run all tests use TestRunner configuration by accessing the directory where the file exists `project/tests/ui_tests`. 
+    Inside the directory run the TestRunner configuration to run all tests by typing the test suite name: 
+    
 ``````
+TestRunner.py 
+`````` 
+
+Note: For some reason running from the command line have import issues, in order to run all the test we have created
+a Python configuration for TestRunner.py script. We were able to run all the tests that way
 
 You should have a browser window opening after running the program.
-
-# readme - The testing site
-
-- The folders are sorted by language and toolchain
-- Documentation for each individual toolchain will be in `./whatever_toolchain/readme.md`
-  - Please write your docs when you add new ones
-- the following description listings are in random order
