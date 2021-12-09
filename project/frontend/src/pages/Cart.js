@@ -86,7 +86,7 @@ class Cart extends Component {
         totalPrice += item.count * item.price;
       }
     });
-    console.log('totalPrice', totalPrice);
+    console.log('totalPrice', this);
     return totalPrice;
   }
 
@@ -218,12 +218,15 @@ class Cart extends Component {
           </tbody>
         </table>
         <TotalBlock totalPrice={this.state.totalPrice} />
+       
         <Link to="/checkout">
           <button
             id="shopCar-buyBtn"
             className="primary-btn"
-            onClick={this.handleBuy}>Checkout</button>
+           >Checkout</button>
         </Link>
+    
+
         <button
           id="shopCar-removeBtn"
           className="remove-btn"

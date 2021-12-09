@@ -112,7 +112,10 @@ def removeCart():
 def checkout():
     infoJsonObject = json.loads(request.get_data())
     print("in app.py backend info, data posted from checkout form: ", infoJsonObject)
-    return insertCheckoutInfoToDB(infoJsonObject)
+    res = {
+        'status': insertCheckoutInfoToDB(infoJsonObject)
+    }
+    return json.dumps(res)
     
 if __name__ == '__main__':
     app.run(debug=True)
