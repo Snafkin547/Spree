@@ -84,7 +84,7 @@ def getOrderItem():
 def getUserInfo():
     user_id = request.args.get('user_id')
     userInformation=findUserInfo(user_id)
-    print(userInformation, file=sys.stderr)
+    #print(userInformation, file=sys.stderr)
     return json.dumps(userInformation)
 
 @app.route(apiPrefix + '/cart', methods = ['GET'])
