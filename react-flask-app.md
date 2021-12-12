@@ -34,3 +34,5 @@ Connecting Frontend to Backend
 1.  Set the proxy to the port running flask on package.json
 
 Note: Command for flask is pip command for react is npm
+
+or python app.py
