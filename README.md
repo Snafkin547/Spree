@@ -1,5 +1,4 @@
-
-Start with Chip-Spree WebApp
+# Start with Chip-Spree WebApp
 
 Backend - Flask setup
 1. Create a virtual environment - to install all dependencies we will need for the application
