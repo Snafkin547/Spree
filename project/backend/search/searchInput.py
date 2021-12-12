@@ -9,12 +9,15 @@ def searchInput(keyword):
     sql_select_query = "SELECT * FROM cp_product WHERE name LIKE '%%%s%%' OR desc_item LIKE '%%%s%%'"%(keyword, keyword)
     res_string = 'Sorry, we did not find a product related to your search.'
     try:
-        my_cur.execute(sql_select_query)
-        res = my_cur.fetchall()
-        if res:
-            # index 2 represents the column name for product name in the database
-            res = map(lambda x: x[2], res)
-            res_string = 'We prepared '+', '.join(res)+' for you!'
+        if not keyword: 
+            res_string = 'Please insert a product name to search for an item'
+        else:
+            my_cur.execute(sql_select_query)
+            res = my_cur.fetchall()
+            if res:
+                # index 2 represents the column name for product name in the database
+                res = map(lambda x: x[2], res)
+                res_string = 'We prepared '+', '.join(res)+' for you!'
     except Error as e:
         res_string = 'An error occourred processing the search.'
         print(e)

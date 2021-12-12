@@ -1,6 +1,7 @@
 import mysql.connector
 from mysql.connector import Error
 
+
 class ProdDatabase:
 
     def __init__(self):
